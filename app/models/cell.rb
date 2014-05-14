@@ -1,4 +1,4 @@
-class Cells < ActiveRecord::Base
+class Cell < ActiveRecord::Base
   belongs_to :game
   has_many :gametiles
 end
