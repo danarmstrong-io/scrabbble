@@ -6,7 +6,7 @@ class Player < ActiveRecord::Base
 include BCrypt
 
   def password
-    @password ||= Pawword.new(password_digest)
+    @password ||= Password.new(password_digest)
   end
 
   def password=(pass)
@@ -16,8 +16,8 @@ include BCrypt
   end
 
   def self.authenticate(username, password)
-    user = User.find_by_username(username)
-    return user if user && (user.password == password)
+    player = Player.find_by_username(username)
+    return player if player && (player.password == password)
     nil
   end
 end

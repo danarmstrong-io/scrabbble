@@ -14,12 +14,12 @@
  *= require_self
  */
 
-.board {
+#board {
     border:2px solid brown;
 }
 
 .cell {
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
     border:1px solid lightblue;
 }
