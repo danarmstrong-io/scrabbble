@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3157876406">
+    <data-source source="LOCAL" name="Rails Scrabbble: development" uuid="fc1f5ba2-a375-4687-b176-695be8c0f4d6">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:Scrabbble_development</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Scrabbble: test" uuid="27061df7-47e5-474f-b605-546766e9112c">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:Scrabbble_test</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Scrabbble: production" uuid="e085cfb3-53ff-4de0-bb17-091d5080d221">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:Scrabbble_production</jdbc-url>
+      <user-name>Scrabbble</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dfe9dff8dfebdfe8dfe8dfe8dfe6dfefdff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
