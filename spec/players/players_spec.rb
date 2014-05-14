@@ -4,17 +4,17 @@ feature 'Player visiting the website' do
 let(:player) { Player.create!(username: "joe", password_digest: "aa", email: "joe@joe.com")}
   context "on homepage" do
     it "can log in" do
-      visit create_session_path
+      visit root_path
+      click_link "signin"
       fill_in 'username', with: "joe"
       fill_in 'password', with: "aa"
-      click_button "Login"
-      expect(page).to have_content "Welcome #{player.username}"
+      expect(session[:id]).not_to be_nil
     end
 
     it "can log out" do
       player
-      visit show_player_path
-      click_button "Logout"
+      visit root_path
+      click_link "logout"
       expect(session[:id]).to be_nil
     end
     
