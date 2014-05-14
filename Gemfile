@@ -37,6 +37,16 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :test, :development do
+  gem "rspec-rails", '~> 2.14.2'
+end
+
+group :test do
+  gem "capybara", '~> 2.2.1'
+  gem "database_cleaner", '~> 1.2.0'
+end
+
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
