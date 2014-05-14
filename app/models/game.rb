@@ -4,4 +4,9 @@ class Game < ActiveRecord::Base
   has_many :gametiles
   has_many :cells
   belongs_to :winner, class_name: "Player"
+
+
+  def self.pending
+    Game.all.select{ |game| game.status == "pending" }
+  end
 end
