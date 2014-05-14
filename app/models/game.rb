@@ -1,4 +1,4 @@
-class Games < ActiveRecord::Base
+class Game < ActiveRecord::Base
   has_many :playergames
   has_many :gametiles
   has_many :cells
