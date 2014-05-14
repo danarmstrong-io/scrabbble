@@ -54,10 +54,17 @@ p2 = Player.create!(username: 'player2', password: 'password', email: 'player2@e
 g = Game.create!(status: 'started', )
 
 # Create playerGames id's 1 & 2
-p1g = PlayerGame.create!(player: p1, game: g)
-p2g = PlayerGame.create!(player: p2, game: g)
+p1g = Playergame.create!(player: p1, game: g)
+p2g = Playergame.create!(player: p2, game: g)
 
 # give 7 starting tiles to each player
 tiles = Tile.all
-p1_tiles = tiles.sample!(7).map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
-p2_tiles = tiles.sample!(7).map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
+
+p1_sample = tiles.sample(7)
+p1_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
+
+tiles -= p1_sample
+
+p2_sample = tiles.sample(7)
+p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
+
