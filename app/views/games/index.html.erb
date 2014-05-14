@@ -1,9 +1,14 @@
 <% if session[:id] %>
+    <h1>Welcome <%= @player.username %></h1>
     <%= link_to "logout", session_path(session[:id]), method: :delete%>
-    <% @games.each do |game| %>
-        <%= render partial: "game", locals: {game: game} %>
+    <%= button_to "create game", games_path, :method => :post%>
+    <% if @games %>
+        <% Game.pending.each do |game| %>
+           <%= render partial: "game", locals: {game: game} %>
+        <% end %>
     <% end %>
 
+    
 
 <% else %>
 

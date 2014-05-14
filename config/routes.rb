@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :players
   resources :sessions
   resources :games
+
+  match 'games/join' => 'games#join', :via => :post
 end
