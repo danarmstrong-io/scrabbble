@@ -18,7 +18,7 @@ let(:player) { Player.create!(username: "joe", password_digest: "aa", email: "jo
       expect(session[:id]).to be_nil
     end
     
-    it "can create a new player"
+    it "can create a new player" do
       visit create_player_path
       fill_in 'username', with: "bob"
       fill_in 'email', with: "bob@bob.com"
