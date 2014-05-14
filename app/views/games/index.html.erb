@@ -1,0 +1,13 @@
+<% if session[:id] %>
+    <%= link_to "logout", session_path(session[:id]), method: :delete%>
+    <% @games.each do |game| %>
+        <%= render partial: "game", locals: {game: game} %>
+    <% end %>
+
+
+<% else %>
+
+    <%= link_to "signup", new_player_path %>
+    <%= link_to "signin", new_session_path %>
+
+<% end %>
