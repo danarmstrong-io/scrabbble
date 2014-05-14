@@ -9,13 +9,15 @@ describe "All Models" do
 			expect(p1).to be_an_instance_of Player
 		end
 
-		it "should raise an ArgumentError if not passed a username" do
-      expect{ Player.new() }.should be_valid
+		it "should require presence of username input" do
+      Player.new.should have(1).error_on(:username)
     end
 
 		it "has a collection of Game objects" do
-			expect(p1.games.all.to_a).to be_a_kind_of Array
+			expect(p1.games.to_a).to be_a_kind_of Array
 		end
 	end
+
+	context Player
 
 end

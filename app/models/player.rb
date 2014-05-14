@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
   has_many :games, through: :playergames
   has_many :wins, class_name: "Game"
 
+  validates_presence_of :username
+
   def password
     @password ||= BCrypt::Password.new(password_digest)
   end
