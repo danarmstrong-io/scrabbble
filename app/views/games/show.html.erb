@@ -5,9 +5,8 @@
     <tr>
       <% (0..14).each do |y| %>
         <!-- cell will be an iteration of row.each_with_index do |cell, cell_index| -->
-      <td id="cell_<%= x %>x<%= y %>" class="cell">
+      <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
         <!-- sample tile -->
-        <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
         <!-- tile will be the value at @board[row_index][cell_index]-->
         <!-- letter will be a call to tile.letter, value: tile.value -->
         <!-- ----------- -->
