@@ -1,0 +1,11 @@
+<div class="games_to_join">
+  <h2>Games You Can Join</h2>
+    <% Game.pending.each do |game| %>
+        <div class="game_to_join">
+          <h2>Game created by: <%= game.playergames.first.player.username %></h2>
+          <h4>Created at: <%= game.created_at %></h4>
+          <%= button_to "join game", games_join_path(:game_id => game.id), :method => :post %>
+        </div>
+    <% end %>
+</div>
+

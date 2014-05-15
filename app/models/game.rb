@@ -9,4 +9,5 @@ class Game < ActiveRecord::Base
   def self.pending
     Game.all.select{ |game| game.status == "pending" }
   end
+
 end
