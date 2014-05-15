@@ -10,4 +10,13 @@ class Game < ActiveRecord::Base
     Game.all.select{ |game| game.status == "pending" }
   end
 
+  def find_cell_letter(x, y)
+    cell = Cell.where(:x_coord => x, :y_coord => y).first
+    gametile = Gametile.where(game: self, cell: cell).first
+    if gametile
+      gametile.tile.letter
+    else
+      nil
+    end
+  end
 end
