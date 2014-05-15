@@ -25,4 +25,10 @@ class GamesController < ApplicationController
   def show
     # @game = Game.find(params[:id])
   end
+
+  def match
+    @game = Game.find(params[:id])
+    params[:words].split('-').all? { |word| !Word.where(text: word).empty? }
+  end
+
 end
