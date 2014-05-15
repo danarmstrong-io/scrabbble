@@ -91,6 +91,10 @@ body {
   /*margin: 0;*/
 }
 
+.active {
+    background-image:url('activetile.png');
+}
+
 .tile:hover {
   cursor: hand;
 }

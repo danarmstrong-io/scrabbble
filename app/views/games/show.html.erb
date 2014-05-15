@@ -6,7 +6,7 @@
           <% (0..14).each do |y| %>
           <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
             <% if letter = @game.find_cell_letter(x, y) %>
-                <%= render partial: 'tile', locals: {letter: letter, value: Tile.find_by_letter(letter.upcase).value} %>
+                <%= render partial: 'tile', locals: {letter: letter, value: Tile.find_by_letter(letter.upcase).value, active: false} %>
             <% end %>
           </td>
           <% end %>
@@ -23,7 +23,7 @@
           <tr>
             <% (0..6).each do |tile_index| %>
               <td class="cell">
-                <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
+                <%= render partial: 'tile', locals: {letter: 'Q', value: 10, active: true} %>
               </td>
             <% end %>
           </tr>
