@@ -1,16 +1,21 @@
 <div id="sidebar">
-  <div class="sidebar_title">
-    <%= link_to "Scrabbulous", root_path %>
-  </div>
-  <div class="sidebar_links">
+  <div id="sidebar_top">
+      <div class="sidebar_title">
+
+      </div>
+      <div class="sidebar_links">
+
+      </div>
+      <%= render partial: 'shared/word_vertical', locals: {word: "scrabble"}%>
+      <%= render partial: 'players/games_youre_in' %>
     <% if session[:id] %>
-      <%= link_to "logout", session_path(session[:id]), method: :delete %>
-      <%= link_to "profile", games_path %>
+        <%= link_to "logout", session_path(session[:id]), method: :delete %>
     <% else %>
-      <%= link_to "signup", new_player_path %>
-      <%= link_to "signin", new_session_path %>
+        <%= link_to "signup", new_player_path %>
+        <%= link_to "signin", new_session_path %>
     <% end %>
   </div>
-  <%= render partial: 'shared/word_vertical', locals: {word: "scrabble"}%>
-  <%= render partial: 'players/games_youre_in' %>
- </div>
+  <div class="scrabble">
+    <%= link_to "Scrabbble", root_path %>
+  </div>
+</div>

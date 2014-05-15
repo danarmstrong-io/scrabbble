@@ -1,7 +1,6 @@
 <% if session[:id] %>
     <h1>Welcome <%= @player.username %></h1>
-    <%= link_to "logout", session_path(session[:id]), method: :delete%>
-    <%= button_to "create game", games_path, :method => :post%>
+    <%= button_to "create game", games_path, :class => "button", :method => :post%>
 
     <% if @games %>
           <%= render partial: 'games_to_join' %>
