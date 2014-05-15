@@ -1,31 +1,35 @@
-<table id="board">
-  <% (0..14).each do |x| %>
-        <!-- @board will be an instance variable of the current Game -->
-        <!-- row will be an iteration of @board.each_with_index do |row, row_index| -->
-    <tr>
-      <% (0..14).each do |y| %>
-        <!-- cell will be an iteration of row.each_with_index do |cell, cell_index| -->
-      <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
-        <!-- sample tile -->
-        <!-- tile will be the value at @board[row_index][cell_index]-->
-        <!-- letter will be a call to tile.letter, value: tile.value -->
-        <!-- ----------- -->
-      </td>
+<div class="borderwhite">
+<div class="borderblack">
+    <table id="board">
+      <% (0..14).each do |x| %>
+            <!-- @board will be an instance variable of the current Game -->
+            <!-- row will be an iteration of @board.each_with_index do |row, row_index| -->
+        <tr>
+          <% (0..14).each do |y| %>
+            <!-- cell will be an iteration of row.each_with_index do |cell, cell_index| -->
+          <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
+            <!-- sample tile -->
+            <!-- tile will be the value at @board[row_index][cell_index]-->
+            <!-- letter will be a call to tile.letter, value: tile.value -->
+            <!-- ----------- -->
+          </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table>
-<table id="tray">
-  <tr>
-    <% (0..6).each do |tile_index| %>
-      <td>
-        <!-- using a sample tile: -->
-        <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
-        <!-- @tray will be an instance variable of @user.tray -->
-        <!-- tile will be an iteration of @tray.tiles.each do |tile| -->
-        <!-- letter will be a call to tile.letter, value: tile.value -->
-        <!-- ----------- -->
-      </td>
-    <% end %>
-  </tr>
-</tray>
+    </table>
+</div>
+</div>
+    <table id="tray">
+      <tr>
+        <% (0..6).each do |tile_index| %>
+          <td>
+            <!-- using a sample tile: -->
+            <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
+            <!-- @tray will be an instance variable of @user.tray -->
+            <!-- tile will be an iteration of @tray.tiles.each do |tile| -->
+            <!-- letter will be a call to tile.letter, value: tile.value -->
+            <!-- ----------- -->
+          </td>
+        <% end %>
+      </tr>
+    </table>
