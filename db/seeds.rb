@@ -1,6 +1,6 @@
 # Seed words from dictionary.txt into Words table
 File.open('db/dictionary.txt').each_line do |word|
-  
+
   Word.create!(text: word.chomp.upcase) if word.chomp!.length > 1
 end
 # Seed Tiles for scrabbble game
@@ -67,5 +67,5 @@ p1_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
 tiles -= p1_sample
 
 p2_sample = tiles.sample(7)
-p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
+p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p2g) }
 
