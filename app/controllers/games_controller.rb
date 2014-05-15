@@ -24,7 +24,7 @@ class GamesController < ApplicationController
 
   def show
     @player = Player.find(session[:id])
-    # @game = Game.find(params[:id])
+    @game = Game.find(params[:id])
   end
 
   def match
