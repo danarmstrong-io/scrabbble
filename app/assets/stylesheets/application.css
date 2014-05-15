@@ -16,7 +16,7 @@
  */
 
 body {
-
+    font-family: Courier;
 
 }
 
@@ -68,8 +68,8 @@ body {
 }
 
 .cell {
-    width:36px;
-    height:36px;
+    width:38px;
+    height:38px;
     border:2px solid white;
 }
 
@@ -79,12 +79,14 @@ body {
 .tile {
   width: 36px;
   height: 36px;
-  background-color: BurlyWood;
+  background-image:url('tile.png');
   border: 1px solid brown;
   border-radius: 5px;
-  color: brown;
-  font-family: Georgia;
+  color: black;
+  font-family: Courier;
   text-align: center;
+  position:relative;
+  text-shadow: 0px 1px 2px #666;
   /*margin: 5px 0 0 5px;*/
   /*margin: 0;*/
 }
@@ -93,14 +95,47 @@ body {
   cursor: hand;
 }
 
-#tile-value {
-  font-size: 2px;
+.tile-value {
+  /*font-size: 2px;*/
+    font-size:14px;
+    position:absolute;
+    top:19px;
+    left:27px;
 }
 
-#tile-letter {
-  text-align: center;
+.tile-letter {
+  /*text-align: center;*/
   font-size: 30px;
+    position:absolute;
+    bottom:3px;
+    left:9px;
 }
+
+
+/*.title-letter {*/
+    /*text-align: center;*/
+    /*font-size:30px;*/
+/*}*/
+
+/*.title-letter p {*/
+    /*position:relative;*/
+    /*bottom:25px;*/
+/*}*/
+
+/*.title-value {*/
+    /*font-size:15px;*/
+    /*position:absolute;*/
+    /*top:0;*/
+    /*left:0;*/
+/*}*/
+
+
+
+
+
+
+
+
 
 
 /*TRAY AREA*/

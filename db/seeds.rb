@@ -43,8 +43,8 @@ Game.destroy_all
           Tile.create!(letter: 'K', value: 5)
           Tile.create!(letter: 'J', value: 8)
           Tile.create!(letter: 'X', value: 8)
-          Tile.create!(letter: 'Q', value: 10)
-          Tile.create!(letter: 'Z', value: 10)
+          Tile.create!(letter: 'Q', value: 9)
+          Tile.create!(letter: 'Z', value: 9)
 
 # Seed Cells to hold location data
 
