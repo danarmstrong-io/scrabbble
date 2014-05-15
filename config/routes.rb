@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :games
 
   match 'games/join' => 'games#join', :via => :post
+  match 'games/match' => 'games#match', :via => :post
+  match 'games/submit' => 'games#submit', :via => :post
 end
