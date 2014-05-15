@@ -28,20 +28,21 @@
 }
 
 .tile {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   background-color: BurlyWood;
   border: 1px solid brown;
   border-radius: 5px;
   color: brown;
   font-family: Georgia;
   text-align: center;
-  margin: 0;
+  /*margin: 5px 0 0 5px;*/
+  /*margin: 0;*/
 }
 
-.tile:hover {
-  cursor: pointer;
-}
+./*tile:hover {
+  cursor: hand;
+}*/
 
 #tile-value {
   font-size: 2px;
