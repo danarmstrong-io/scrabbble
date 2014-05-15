@@ -2,9 +2,6 @@
   <div class="borderblack">
     <table id="board">
       <% (0..14).each do |x| %>
-            <!-- @board will be an instance variable of the current Game -->
-            <!-- row will be an iteration of @board.each_with_index do |row, row_index| -->
-
         <tr>
           <% (0..14).each do |y| %>
           <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
@@ -18,8 +15,9 @@
     </table>
   </div>
 </div>
+
 <div class="tray_area">
-    <div class="submit_button"><%= button_to "Submit" %></div>
+    <div class="submit_button"><%= button_to "Submit", {}, :id => "submit_button", :class => "button" %></div>
     <div class="tray">
         <table id="tray">
           <tr>
@@ -32,8 +30,8 @@
         </table>
     </div>
     <div class="tray_buttons">
-        <div><%= button_to "Shuffle" %></div>
-        <div><%= button_to "Reset Letters" %></div>
+        <div><%= button_to "Shuffle", {}, :class => "button" %></div>
+        <div><%= button_to "Reset Letters", {}, :class => "button" %></div>
     </div>
 
 </div>
