@@ -1,31 +1,31 @@
 <div class="borderwhite">
-<div class="borderblack">
+  <div class="borderblack">
     <table id="board">
       <% (0..14).each do |x| %>
             <!-- @board will be an instance variable of the current Game -->
             <!-- row will be an iteration of @board.each_with_index do |row, row_index| -->
+
         <tr>
           <% (0..14).each do |y| %>
-
           <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
-
+            <% if letter = @game.find_cell_letter(x, y) %>
+                <%= render partial: 'tile', locals: {letter: letter, value: Tile.find_by_letter(letter.upcase).value} %>
+            <% end %>
           </td>
           <% end %>
         </tr>
       <% end %>
     </table>
+  </div>
+</div>
 
-    <table id="tray">
-      <tr>
-        <% (0..6).each do |tile_index| %>
-          <td class="cell">
-            <!-- using a sample tile: -->
-            <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
-            <!-- @tray will be an instance variable of @user.tray -->
-            <!-- tile will be an iteration of @tray.tiles.each do |tile| -->
-            <!-- letter will be a call to tile.letter, value: tile.value -->
-            <!-- ----------- -->
-          </td>
-        <% end %>
-      </tr>
-    </table>
+<table id="tray">
+  <tr>
+    <% (0..6).each do |tile_index| %>
+      <td class="cell">
+        <!-- using a sample tile: -->
+        <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
+      </td>
+    <% end %>
+  </tr>
+</table>

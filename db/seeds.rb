@@ -1,8 +1,15 @@
-# Seed words from dictionary.txt into Words table
-File.open('db/dictionary.txt').each_line do |word|
+# # Seed words from dictionary.txt into Words table
+# File.open('db/dictionary.txt').each_line do |word|
+#
+#   Word.create!(text: word.chomp.upcase) if word.chomp!.length > 1
+# end
 
-  Word.create!(text: word.chomp.upcase) if word.chomp!.length > 1
-end
+Cell.destroy_all
+Player.destroy_all
+Playergame.destroy_all
+Gametile.destroy_all
+Tile.destroy_all
+Game.destroy_all
 # Seed Tiles for scrabbble game
 # E
 12.times { Tile.create!(letter: 'E', value: 1) }
@@ -40,8 +47,12 @@ end
           Tile.create!(letter: 'Z', value: 10)
 
 # Seed Cells to hold location data
-14.times do |row_index|
-     14.times do |col_index|
+
+
+
+
+15.times do |row_index|
+     15.times do |col_index|
           Cell.create!(x_coord: col_index, y_coord: row_index)
      end
 end
@@ -71,4 +82,7 @@ p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p2g) }
 
 # put some tiles on the board
 
-board_sample = tiles.sample(7)
+board_sample = tiles.sample(50)
+board_sample.each do |tile|
+  Gametile.create!(game: g, tile:tile, cell: Cell.all.sample)
+end
