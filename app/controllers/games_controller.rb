@@ -23,6 +23,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @player = Player.find(session[:id])
     # @game = Game.find(params[:id])
   end
 end

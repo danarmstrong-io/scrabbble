@@ -71,4 +71,4 @@ p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p2g) }
 
 # put some tiles on the board
 
-
+board_sample = tiles.sample(7)

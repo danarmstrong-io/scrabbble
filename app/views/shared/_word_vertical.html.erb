@@ -1,0 +1,3 @@
+<% upcase_letters(word).each do |letter| %>
+    <%= render partial: 'shared/letter', locals: {letter: letter}%>
+<% end %>
