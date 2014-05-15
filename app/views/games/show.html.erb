@@ -18,7 +18,7 @@
 <table id="tray">
   <tr>
     <% (0..6).each do |tile_index| %>
-      <td>
+      <td class="cell">
         <!-- using a sample tile: -->
         <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
         <!-- @tray will be an instance variable of @user.tray -->
