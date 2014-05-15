@@ -105,6 +105,9 @@ body {
   font-size: 30px;
 }
 
+
+/*TRAY AREA*/
+
 #tray {
   text-align: center;
   margin: 30px;
@@ -119,7 +122,18 @@ body {
 }
 
 
+.tray{
+    float:left;
+    display:inline;
+}
 
+.submit_button {
+
+}
+
+.tray_buttons {
+
+}
 
 
 

@@ -18,14 +18,22 @@
     </table>
   </div>
 </div>
+<div class="tray_area">
+    <div class="submit_button"><%= button_to "Submit" %></div>
+    <div class="tray">
+        <table id="tray">
+          <tr>
+            <% (0..6).each do |tile_index| %>
+              <td class="cell">
+                <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+    </div>
+    <div class="tray_buttons">
+        <div><%= button_to "Shuffle" %></div>
+        <div><%= button_to "Reset Letters" %></div>
+    </div>
 
-<table id="tray">
-  <tr>
-    <% (0..6).each do |tile_index| %>
-      <td class="cell">
-        <!-- using a sample tile: -->
-        <%= render partial: 'tile', locals: {letter: 'Q', value: 10} %>
-      </td>
-    <% end %>
-  </tr>
-</table>
+</div>
