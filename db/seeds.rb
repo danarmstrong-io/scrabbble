@@ -69,3 +69,4 @@ tiles -= p1_sample
 p2_sample = tiles.sample(7)
 p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
 
+board_sample = tiles.sample(7)
