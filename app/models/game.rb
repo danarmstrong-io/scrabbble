@@ -12,8 +12,11 @@ class Game < ActiveRecord::Base
 
   def find_cell_letter(x, y)
     cell = Cell.where(:x_coord => x, :y_coord => y).first
+    puts cell
     gametile = Gametile.where(game: self, cell: cell).first
+    puts gametile
     if gametile
+      puts gametile.tile.letter
       gametile.tile.letter
     else
       nil
