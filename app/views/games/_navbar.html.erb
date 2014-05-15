@@ -1,0 +1,14 @@
+<div id="header">
+  <div class="header_title">
+    <%= link_to "Scrabbulous" root_path %>
+  </div>
+  <div class="header_links">
+    <% if session[:id] %>
+      <%= link_to "logout", session_path(session[:id]), method: :delete %>
+      <%= link_to "profile", games_path %>
+    <% else %>
+      <%= link_to "signup", new_player_path %>
+      <%= link_to "signin", new_session_path %>
+    <% end %>
+  </div>
+ </div> 
