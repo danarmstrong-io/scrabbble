@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   def index
     @games = Game.where(status: "pending")
-    @player = Player.find(session[:id])
+    @player = Player.find(session[:id]) if session[:id]
   end
 
   def create
