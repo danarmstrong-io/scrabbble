@@ -27,6 +27,13 @@ var on_tile_grab = function(f) { $('.tile').on( 'mousedown', f ) };
 var define_current_tile = function(e) {
   current_tile = $(this)[0];
   console.log($(current_tile).parent());
+  $(current_tile).parent().droppable({
+    drop: function() {
+      console.log("you're dropping a cell");
+      $(current_tile).css( {left: '0px', top: '0px'} );
+      $(current_tile).detach().appendTo(this);
+    }
+  });
   $(current_tile).parent().droppable('enable');
 };
 
