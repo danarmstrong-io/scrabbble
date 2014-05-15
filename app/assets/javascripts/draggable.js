@@ -13,12 +13,12 @@ var make_cells_droppable = function() {
     if ($(cell).children().length == 0) {
       $(cell).droppable({
         drop: function() {
-          console.log("you're dropping a cell");
           $(current_tile).css( {left: '0px', top: '0px'} );
           $(current_tile).detach().appendTo(this);
           $(this).droppable('disable');
         }
       });
+      $(this).droppable('enable');
     }
   });
 };
@@ -26,10 +26,8 @@ var make_cells_droppable = function() {
 var on_tile_grab = function(f) { $('.tile').on( 'mousedown', f ) };
 var define_current_tile = function(e) {
   current_tile = $(this)[0];
-  console.log($(current_tile).parent());
   $(current_tile).parent().droppable({
     drop: function() {
-      console.log("you're dropping a cell");
       $(current_tile).css( {left: '0px', top: '0px'} );
       $(current_tile).detach().appendTo(this);
     }
@@ -37,8 +35,31 @@ var define_current_tile = function(e) {
   $(current_tile).parent().droppable('enable');
 };
 
+// SHUFFLE LETTERS - TO BE BUILT LATER
+var on_click_shuffle = function(f) {$("#shuffle").on("click", f)};
+var shuffle_tiles = function(e) {
+  e.preventDefault();
+}
+
+// RESET LETTERS
+var on_click_reset = function(f) {$("#reset").on("click", f)};
+var reset_tray = function(e) {
+  e.preventDefault();
+  var unplaced_tiles = $('div.tile.ui-draggable');
+  var tray_cells = $("#tray tr").children();
+  $.each(unplaced_tiles, function(index, tile) {
+    var cell = tray_cells[index];
+    $(tile).detach().appendTo($(cell));
+  });
+  make_cells_droppable();
+}
+
+
+
 $(function() {
   make_tray_tiles_draggable();
   make_cells_droppable();
   on_tile_grab( define_current_tile );
+  on_click_shuffle( shuffle_tiles );
+  on_click_reset( reset_tray );
 });
