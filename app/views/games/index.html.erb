@@ -2,13 +2,14 @@
     <h1>Welcome <%= @player.username %></h1>
     <%= link_to "logout", session_path(session[:id]), method: :delete%>
     <%= button_to "create game", games_path, :method => :post%>
+
     <% if @games %>
-        <% Game.pending.each do |game| %>
-           <%= render partial: "game", locals: {game: game} %>
-        <% end %>
+          <%= render partial: 'games_to_join' %>
     <% end %>
 
-    
+
+    <%= render partial: 'players/active_games' %>
+    <%= render partial: 'players/pending_games' %>
 
 <% else %>
 

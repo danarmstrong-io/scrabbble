@@ -17,7 +17,7 @@ class GamesController < ApplicationController
   def join
     @game = Game.find(params[:game_id])
     Playergame.create(game: @game, player_id: session[:id], score: 0)
-    @game.status = "in-progress"
+    @game.status = "active"
     @game.save
     redirect_to @game
   end

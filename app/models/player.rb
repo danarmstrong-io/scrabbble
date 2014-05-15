@@ -7,6 +7,14 @@ class Player < ActiveRecord::Base
 
   validates_presence_of :username
 
+  def active_games
+    self.games.select {|game| game.status == "active" }
+  end
+
+  def pending_games
+    self.games.select {|game| game.status == "pending" }
+  end
+
   def password
     @password ||= BCrypt::Password.new(password_digest)
   end

@@ -1,0 +1,7 @@
+<div class="active_games">
+  <h2>Pending Games You're In</h2>
+  <% @player.pending_games.each do |game| %>
+      <h2>Game created by: <%= game.playergames.first.player.username %></h2>
+      <h4>Created at: <%= game.created_at %></h4>
+  <% end %>
+</div>

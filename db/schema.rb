@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20140514191046) do
   enable_extension "plpgsql"
 
   create_table "cells", force: true do |t|
-    t.integer  "game_id"
     t.integer  "x_coord"
     t.integer  "y_coord"
     t.datetime "created_at"
