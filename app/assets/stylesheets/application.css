@@ -46,8 +46,9 @@ a {
 .main {
     margin-left:200px;
     float:right;
-    width:678px;
-    height:688px;
+    width:672px;
+    height:677px;
+    /*height:677px;*/
 }
 
 /*BOARD STUFF*/
@@ -125,29 +126,6 @@ a {
 }
 
 
-/*.title-letter {*/
-    /*text-align: center;*/
-    /*font-size:30px;*/
-/*}*/
-
-/*.title-letter p {*/
-    /*position:relative;*/
-    /*bottom:25px;*/
-/*}*/
-
-/*.title-value {*/
-    /*font-size:15px;*/
-    /*position:absolute;*/
-    /*top:0;*/
-    /*left:0;*/
-/*}*/
-
-
-
-
-
-
-
 
 
 
@@ -156,7 +134,7 @@ a {
 .tray_area {
     position:relative;
     left:220px;
-    top:4px;
+    top:16px;
     /*height:200px;*/
     clear:both;
 }
@@ -213,7 +191,7 @@ a {
     margin-top:10px;
 
     height:900px;
-    position:fixed;
+    position:absolute;
     float: left;
     /*border:1px solid red;*/
 }
@@ -234,6 +212,28 @@ a {
     color: black;
     text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
 }
+
+.welcome {
+    text-align: center;
+    font-size:38px;
+    font-family: 'Great Vibes', Helvetica, sans-serif;
+}
+
+.welcome-title {
+    font-size: 120px;
+    position:relative;
+    top:70px;
+}
+
+.welcome-motto {
+    position:relative;
+    bottom: 40px;
+}
+
+/*.signup_button {*/
+    /*height: 80px;*/
+    /*width:100px;*/
+/*}*/
 
 .scrabble a {
     color:black;

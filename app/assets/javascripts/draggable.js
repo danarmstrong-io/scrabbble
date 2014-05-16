@@ -46,6 +46,7 @@ var define_current_tile = function(e) {
 var on_click_reset = function(f) {$("#reset").on("click", f)};
 var reset_tray = function(e) {
   e.preventDefault();
+  console.log("Inside the reset tray callback");
   var unplaced_tiles = $('div.tile.ui-draggable');
   var tray_cells = $("#tray tr").children();
   $.each(unplaced_tiles, function(index, tile) {
