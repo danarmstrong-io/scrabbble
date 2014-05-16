@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if Player.authenticate(params[:username], params[:password])
-      @player = Player.find_by_username(params[:username])
+    @player = Player.authenticate(params[:username], params[:password])
+    if @player
       session[:id] = @player.id
       redirect_to root_path
     else

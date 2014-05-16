@@ -7,6 +7,8 @@ class Player < ActiveRecord::Base
 
   validates_presence_of :username
 
+  # CODE REVIEW: you should check out 
+  # http://guides.rubyonrails.org/active_record_querying.html#scopes
   def active_games
     self.games.select {|game| game.status == "active" }
   end

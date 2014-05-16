@@ -1,4 +1,5 @@
 // Instance variables
+// CODE REVIEW: How are these instance variables?
 var current_tile;
 var current_cell;
 
@@ -54,7 +55,8 @@ var reset_tray = function(e) {
   make_cells_droppable();
 }
 
-
+// CODE REVIEW: Seems like there are a couple of things holding state and
+// and having behavior here... seems like a job for objects...
 
 $(function() {
   make_tray_tiles_draggable();

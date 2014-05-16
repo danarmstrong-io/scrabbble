@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+# CODE REVIEW: how is this a controller test? What is this testing? This seems
+# like a concern that belongs in a class somewhere
 feature 'validating words' do
   describe '#match' do
     it 'returns true if all checked words are valid' do
