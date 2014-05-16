@@ -3,7 +3,8 @@ require 'bcrypt'
 class Player < ActiveRecord::Base
   has_many :playergames
   has_many :games, through: :playergames
-  has_many :wins, class_name: "Game"
+  has_many :wins, class_name: "Game", foreign_key: :winner_id
+  has_many :current_games, class_name: "Game", foreign_key: :current_player_id
 
   validates_presence_of :username
 
