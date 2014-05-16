@@ -1,0 +1,6 @@
+<% if @player.id == session[:id] %>
+    <h2>Your Profile</h2>
+<% else %>
+    <h2><%= @player.username %>'s Profile</h2>
+<% end %>
+<%= render partial: 'players/games_in' %>
