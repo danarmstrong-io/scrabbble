@@ -5,6 +5,8 @@ class Game < ActiveRecord::Base
   belongs_to :winner, class_name: "Player"
   belongs_to :current_player, class_name: "Player"
 
+  before_save {self.status = "pending"}
+
   def self.pending
     Game.all.select{ |game| game.status == "pending" }
   end
