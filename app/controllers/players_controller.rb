@@ -5,11 +5,12 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(user_params)
-    if @player.save!
+    if user_params[:username].present? && user_params[:password].present?
+      @player.save
       session[:id] = @player.id
       redirect_to root_path
     else
-      render 'new'
+      redirect_to :back
     end
   end
 
