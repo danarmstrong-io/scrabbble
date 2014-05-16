@@ -3,7 +3,7 @@
       <% (0..14).each do |x| %>
         <tr>
           <% (0..14).each do |y| %>
-          <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" dat-y="<%=y%>" class="cell">
+          <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" data-y="<%=y%>" class="cell">
             <% if letter = @game.find_cell_letter(x, y) %>
                 <%= render partial: 'tile', locals: {letter: letter, value: Tile.find_by_letter(letter.upcase).value, active: false} %>
             <% end %>
@@ -12,4 +12,3 @@
         </tr>
       <% end %>
     </table>
-

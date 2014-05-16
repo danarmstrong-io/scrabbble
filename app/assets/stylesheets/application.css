@@ -327,14 +327,18 @@ a {
 }
 
 .button:hover {
-background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c48d20), color-stop(1, #f2d68a) );
-background:-moz-linear-gradient( center top, #c48d20 5%, #f2d68a 100% );
-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c48d20', endColorstr='#f2d68a');
-background-color:#c48d20;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c48d20), color-stop(1, #f2d68a) );
+    background:-moz-linear-gradient( center top, #c48d20 5%, #f2d68a 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c48d20', endColorstr='#f2d68a');
+    background-color:#c48d20;
     cursor:pointer;
 }
 
 .button:active {
-position:relative;
-top:1px;
+    position:relative;
+    top:1px;
+}
+
+.ui-state-disabled{
+    opacity: 1.0;
 }
