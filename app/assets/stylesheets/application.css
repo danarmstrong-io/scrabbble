@@ -20,6 +20,12 @@ body {
 
 }
 
+a {
+    text-decoration: none;
+    color:black;
+
+}
+
 .container {
     background: rgb(242,214,138); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(242,214,138,1) 0%, rgba(232,173,102,1) 100%); /* FF3.6+ */
@@ -40,6 +46,8 @@ body {
 .main {
     margin-left:200px;
     float:right;
+    width:678px;
+    height:688px;
 }
 
 /*BOARD STUFF*/
@@ -54,6 +62,7 @@ body {
 .borderblack {
     border-spacing: 0;
     border: 3px solid black;
+    height:664px;
     margin:0;
     padding:0;
 }
@@ -144,6 +153,14 @@ body {
 
 /*TRAY AREA*/
 
+.tray_area {
+    position:relative;
+    left:220px;
+    top:4px;
+    /*height:200px;*/
+    clear:both;
+}
+
 #tray {
   text-align: center;
   margin: 30px;
@@ -181,9 +198,13 @@ body {
     text-align: center;
 }
 
-.tray_buttons div {
-    /*margin:5px auto;*/
+/*LOGIN IN*/
+.login {
+    margin-left:65px;
+}
 
+.login div{
+    display:inline;
 }
 
 /*SIDEBAR STUFF*/
@@ -198,6 +219,7 @@ body {
 }
 
 #sidebar_top {
+    z-index:-1;
     width:200px;
     height:671px;
     /*border: 1px dotted green;*/
@@ -207,6 +229,7 @@ body {
 
 .scrabble {
     /*margin-top:600px;*/
+    width:100px;
     font: 400 64px/0.8 'Great Vibes', Helvetica, sans-serif;
     color: black;
     text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
@@ -221,40 +244,44 @@ body {
 
 .vertical_word {
     margin: 20px 80px;
+    /*font-weight: bold;*/
 }
+
 
 .letter {
     width:45px;
     height:45px;
-    border-top:2px solid black;
-    border-right:2px solid black;
-    border-left:2px solid black;
+    border-top:3px solid black;
+    border-right:3px solid black;
+    border-left:3px solid black;
     position:relative;
     text-align: center;
 }
 
 .letter:last-child
 {
-    border-bottom:2px solid black;
+    border-bottom:3px solid black;
 }
 
 .title-letter {
     text-align: center;
-    font-size:30px;
+    font-size:40px;
 }
 
 .title-letter p {
     position:relative;
-    bottom:25px;
+    bottom:41px;
 }
+
+
 
 .title-value {
     /*position:relative;*/
     font-size:15px;
     /*float:right;*/
     position:absolute;
-    top:0;
-    left:0;
+    top:30px;
+    left:35px;
 }
 
 

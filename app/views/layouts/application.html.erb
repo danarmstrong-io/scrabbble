@@ -13,8 +13,14 @@
 <div class="container">
   <%= render partial: 'shared/sidebar' %>
   <div class="main">
+    <div class="borderwhite">
+      <div class="borderblack">
     <%= yield %>
+        </div>
+      </div>
   </div>
+  <%= render partial: 'shared/traybar' %>
+
 </div>
 
 </body>
