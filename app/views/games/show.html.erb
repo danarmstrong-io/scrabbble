@@ -1,9 +1,19 @@
 <div class="borderwhite">
   <div class="borderblack">
     <table id="board">
+      <%# 
+        CODE REVIEW: I'd make (0..14) or 14 a constant on Game 
+      %>
       <% (0..14).each do |x| %>
         <tr>
           <% (0..14).each do |y| %>
+          <%# 
+            CODE REVIEW: This cell_x_y bit would be great in a helper. Or maybe
+            even a helper for the the whole wraping td:
+              board_cell_for(x, y) do
+                <%= if letter = @game...
+              end
+          %>
           <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" data-y="<%=y%>" class="cell">
             <% if letter = @game.find_cell_letter(x, y) %>
                 <%= render partial: 'tile', locals: {letter: letter, value: Tile.find_by_letter(letter.upcase).value, active: false} %>

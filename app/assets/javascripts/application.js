@@ -15,4 +15,5 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
+// CODE REVIEW: You probably mean to include this before require_tree
 //= require jquery.ui.all

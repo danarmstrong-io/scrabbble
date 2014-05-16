@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # CODE REVIEW: you're not using the return value of Player.authenticate
     if Player.authenticate(params[:username], params[:password])
       @player = Player.find_by_username(params[:username])
       session[:id] = @player.id

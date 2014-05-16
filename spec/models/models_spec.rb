@@ -1,5 +1,6 @@
 require "spec_helper"
 
+# CODE REVIEW: What made you decide to put the tests for all models in 1 file?
 describe "All Models -" do
 	let(:p1) { Player.create!(username: "Bob", password: "password", email: "test@test.com") }
 	let(:g1) { Game.create! }
