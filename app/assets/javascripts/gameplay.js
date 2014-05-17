@@ -71,13 +71,26 @@ var get_all_cells_included_on_submit = function(input_cells) {
       bottom_cell = new Cell(cell_below);
       cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
     }
-
-
+    console.log(top_cell);
+    console.log(bottom_cell);    
+  
   } else if (orientation == 'horizontal') {
+    var left_cell = top_left_cell;
+    var right_cell = bottom_right_cell;
     // look left of left-most cell
-
+    var cell_left = $('.cell[data-x="'+(left_cell.x-1)+'"][data-y="'+left_cell.y+'"]');
+    while (tile_exists_at(cell_left)) {
+      left_cell = new Cell(cell_left);
+      cell_left = $('.cell[data-x="'+(left_cell.x-1)+'"][data-y="'+left_cell.y+'"]');
+    }
     // look right of right-most cell
-
+    var cell_right = $('.cell[data-x="'+(right_cell.x+1)+'"][data-y="'+right_cell.y+'"]');
+    while (tile_exists_at(cell_right)) {
+      right_cell = new Cell(cell_right)
+      cell_right = $('.cell[data-x="'+(right_cell.x+1)+'"][data-y="'+right_cell.y+'"]');
+    }
+    console.log(left_cell);
+    console.log(right_cell);  
   } else if (orientation == 'one cell') { // handle this somehow??
 
   } else {
