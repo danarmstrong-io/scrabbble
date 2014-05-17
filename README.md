@@ -71,20 +71,26 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 		3. Send all words to Serve using AJAX
 3. Testing
 	a. Models
+
 		a. user-defined models
 	b. Controllers
+	
 		a. confirm actions have 200 messages
 	c. Views
+	
 		a. capaybara tests
 	d. JS
+	
 		a. Jasmine testing?
 4. AJAX
 	a. Check Words
+
 		1. Send words (JS --> Ruby)
 		2. Check words, send response (Ruby --> JS)
 		3. Prompt user, send additional data if necessary (JS --> Ruby)
 			a. x, y, tile points, cell points?
 	b. New Tiles
+
 		1. Give player new tiles at end of turn
 5. Multiple Screens/Ports
 	a. ??	
