@@ -34,11 +34,14 @@ class Game < ActiveRecord::Base
     self.status = 'active'
     self.current_player_id = self.players.first.id
     self.players.each do |player|
-      player.get_tiles
+      game_tiles = Gametile.where(playergame_id: nil, game: self).sample(7)
+      player_game = Playergame.where(game: self, player: player).first
+      game_tiles.each do |game_tile|
+        game_tile.playergame_id = player_game.id
+      end
     end
+    self.save
   end
-
-
 
   def complete
     self.status = 'completed'

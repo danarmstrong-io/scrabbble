@@ -20,9 +20,7 @@ class GamesController < ApplicationController
   def join
     @game = Game.find(params[:id])
     Playergame.create(game: @game, player_id: session[:id], score: 0)
-
     @game.start
-    @game.save
     redirect_to @game
   end
 
@@ -49,6 +47,5 @@ class GamesController < ApplicationController
     @game.complete
     @game.save
     redirect_to root_path
-
   end
 end
