@@ -44,18 +44,14 @@ var get_all_cells_included_on_submit = function(input_cells) {
   // on the axis of the submitted tiles,
   // touching at least one submitted tile
   var included_cells = []
-  // var included_cells = sort_input_cells(input_cells);
-  // console.log(included_cells);
   var top_left_cell = find_top_left_tile_cell(input_cells);
   var bottom_right_cell = find_bottom_right_tile_cell(input_cells);
-  var orientation;
+  var orientation = get_orientation( top_left_cell, bottom_right_cell );
   // redundant for now...
   console.log(top_left_cell.x+', '+top_left_cell.y);
   console.log(bottom_right_cell.x+', '+bottom_right_cell.y);
-  if (top_left_cell.x == bottom_right_cell.x) { orientation = 'vertical' }
-  if (top_left_cell.y == bottom_right_cell.y) { orientation = 'horizontal' }
-  if (top_left_cell.x == bottom_right_cell.x && top_left_cell.y == bottom_right_cell.y) { orientation = 'one cell'}
   console.log(orientation);
+
   if (orientation == 'vertical') {
     var top_cell = top_left_cell;
     var bottom_cell = bottom_right_cell;
@@ -73,6 +69,8 @@ var get_all_cells_included_on_submit = function(input_cells) {
     }
     console.log(top_cell);
     console.log(bottom_cell);    
+    included_cells = get_cells_between_range(top_cell, bottom_cell, orientation)
+    console.log(included_cells)
   
   } else if (orientation == 'horizontal') {
     var left_cell = top_left_cell;
@@ -91,23 +89,43 @@ var get_all_cells_included_on_submit = function(input_cells) {
     }
     console.log(left_cell);
     console.log(right_cell);  
+    included_cells = get_cells_between_range(left_cell, right_cell, orientation)
+    console.log(included_cells)
   } else if (orientation == 'one cell') { // handle this somehow??
 
   } else {
     alert('invalid cell arrangement')
   }
+
+
 }
 
-var tile_exists_at = function(cell) {
-  if (cell.children().length > 0) { return true }
-  return false;
-};
 
 var tiles_touch_prev = function() {
   return true
 };
 
-// helpers: TOUCHING, FIND_TOP_LEFT_TILE, FIND_BOTTOM_RIGHT_TILE
+// helpers: TOUCHING, FIND_TOP_LEFT_TILE, FIND_BOTTOM_RIGHT_TILE, TILE_EXISTS_AT, GET_CELLS_BETWEEN_RANGE, GET_ORIENTATION
+  var get_orientation = function(top_left_cell, bottom_right_cell) {
+    var orientation; 
+    if (top_left_cell.x == bottom_right_cell.x) { orientation = 'vertical' }
+    if (top_left_cell.y == bottom_right_cell.y) { orientation = 'horizontal' }
+    if (top_left_cell.x == bottom_right_cell.x && top_left_cell.y == bottom_right_cell.y) { orientation = 'one cell'}
+    return orientation;
+  }
+  var get_cells_between_range = function(top_left_cell, bottom_right_cell, orientation) {
+    var cells_in_range = [];
+    if (orientation == 'vertical') {
+      for (var i = top_left_cell.y; i <= bottom_right_cell.y; i++) {
+        cells_in_range.push( new Cell($('.cell[data-y="'+i+'"][data-x="'+top_left_cell.x+'"]')) );
+      }
+    } else if (orientation == 'horizontal') {
+      for (var i = top_left_cell.x; i <= bottom_right_cell.x; i++) {
+        cells_in_range.push( new Cell($('.cell[data-x="'+i+'"][data-y="'+top_left_cell.y+'"]')) );
+      } 
+    } else { cells_in_range.push(top_left_cell) }
+    return cells_in_range;
+  };
   var touching = function(cell1, cell2) { // cell is a jquery object wrapping a <td> element
     if (cell1.x == cell2.x) { // on the same x-axis
       console.log( Math.abs(cell1.y.to_i - cell2.y) );
@@ -137,12 +155,15 @@ var tiles_touch_prev = function() {
     input_cells.sort(compare_y);
     return input_cells;
   }
-
   var find_top_left_tile_cell = function(input_cells) {
     return sort_input_cells(input_cells)[0]
   };
   var find_bottom_right_tile_cell = function(input_cells) {
     return sort_input_cells(input_cells)[input_cells.length-1]
+  };
+  var tile_exists_at = function(cell) {
+    if (cell.children().length > 0) { return true }
+    return false;
   };
 
 var tiles_spell_valid_word = function() {
