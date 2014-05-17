@@ -12,6 +12,7 @@ _"Where the Q's and Z's are worth 9"_
 		3. Create a game to play
 		4. Join an existing game needing another player
 		5. See how many games I have won or lost
+
 2. Game Play:
 
 	a. As a current player, I want to be able to... 
@@ -30,6 +31,7 @@ _"Where the Q's and Z's are worth 9"_
 		12. Be told of an invalid word(s) and allowed to play a different word.
 		13. Play multiple games at once / switch between active games
 		14. Forfeit a game I don't want to play anymore
+
 	b. As a non-current player, I want to be able to...
 
 		1. Have my brower automatically update to inform me of my turn
@@ -55,36 +57,57 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 	a. Models
 
 		1. User-defined methods
+
 	b. Controllers
 
 		1. Refactor
 		2. AJAX request actions
+
 	c. Views
 
 		1. Modify (0..14) to be constants on show view
+
 	d. Other
 
 		1. Update REST routes
+
 2. JS
+
 	a. Game Logic
 
 		1. Determine if placed word is valid
 		2. Locate all other words associated with placed word
 		3. Send all words to Serve using AJAX
+
+
+// on submit of a board
+//   verify that the current tiles are either all on the same row or column
+//   verify that the current tiles touch at least one previously placed tile
+//   verify that the current tiles spell a word(s) that exists in the dictionary
+// if verifications pass
+//   calculate score of the word(s) formed by the tiles
+//   apply score to current player's total score
+//   add/remove appropriate css classes,ids,attrs
+//   transfer board to next turn
+
 3. Testing
 
 	a. Models
 
 		a. user-defined models
+
 	b. Controllers
 	
 		a. confirm actions have 200 messages
+
 	c. Views
 	
 		a. capaybara tests
+
 	d. JS
 	
 		a. Jasmine testing?
+
 4. AJAX
 
 	a. Check Words
@@ -92,10 +115,13 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 		1. Send words (JS --> Ruby)
 		2. Check words, send response (Ruby --> JS)
 		3. Prompt user, send additional data if necessary (JS --> Ruby)
+			
 			a. x, y, tile points, cell points?
+
 	b. New Tiles
 
 		1. Give player new tiles at end of turn
+
 5. Multiple Screens/Ports
 
 	a. ??	
