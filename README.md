@@ -13,6 +13,7 @@ _"Where the Q's and Z's are worth 9"_
 		4. Join an existing game needing another player
 		5. See how many games I have won or lost
 2. Game Play:
+
 	a. As a current player, I want to be able to... 
 
 		1. Move a tile from my tray and place on the board.
@@ -50,6 +51,7 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 
 ###To Do List
 1. Ruby
+
 	a. Models
 
 		1. User-defined methods
@@ -70,6 +72,7 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 		2. Locate all other words associated with placed word
 		3. Send all words to Serve using AJAX
 3. Testing
+
 	a. Models
 
 		a. user-defined models
@@ -83,6 +86,7 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 	
 		a. Jasmine testing?
 4. AJAX
+
 	a. Check Words
 
 		1. Send words (JS --> Ruby)
