@@ -4,7 +4,9 @@ _"Where the Q's and Z's are worth 9"_
 
 ###User Stories
 1.	General:
+
 	a. As a Player, I want to be able to...
+	
 		1. Create an account to play the game
 		2. Login into an existing account
 		3. Create a game to play
@@ -12,6 +14,7 @@ _"Where the Q's and Z's are worth 9"_
 		5. See how many games I have won or lost
 2. Game Play:
 	a. As a current player, I want to be able to... 
+
 		1. Move a tile from my tray and place on the board.
 		2. Move a tile from the board back to my tray.
 		3. Not be able to place a tile in a invalid spot on the board (existing letter / not on board)
@@ -27,6 +30,7 @@ _"Where the Q's and Z's are worth 9"_
 		13. Play multiple games at once / switch between active games
 		14. Forfeit a game I don't want to play anymore
 	b. As a non-current player, I want to be able to...
+
 		1. Have my brower automatically update to inform me of my turn
 		2. Be able to refresh my page manually to show updated board
 		3. Shuffle my tray or rearrange my tiles during my off-turn
