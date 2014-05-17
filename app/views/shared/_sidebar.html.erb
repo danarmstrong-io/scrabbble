@@ -1,16 +1,12 @@
 <div id="sidebar">
   <div id="sidebar_top">
       <% if session[:id] %>
-        <%= link_to (render partial: 'shared/word_vertical', locals: {word: @player.username }), player_path(@player) %>
+        <%= link_to (render partial: 'shared/word_vertical', locals: {word: Player.find(session[:id]).username }), player_path(session[:id]) %>
+        <%= render partial: 'shared/game_status' %>
+
       <% else %>
         <%= render partial: 'shared/word_vertical', locals: { word: "scrabbble" }%>
       <% end %>
-
-
-    <% if session[:id] %>
-        <%= link_to "logout", session_path(session[:id]), method: :delete %>
-
-    <% end %>
   </div>
   <div class="scrabble">
     <% if session[:id] %>
