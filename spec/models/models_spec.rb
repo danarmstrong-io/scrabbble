@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "All Models -" do
+describe "All Model -" do
 	let(:p1) { Player.create!(username: "Bob", password: "password", email: "test@test.com") }
 	let(:g1) { Game.create! }
 

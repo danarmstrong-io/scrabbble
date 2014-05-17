@@ -9,11 +9,11 @@ class Player < ActiveRecord::Base
   validates_presence_of :username
 
   def active_games
-    self.games.select {|game| game.status == "active" }
+    self.games.where(status: "active")
   end
 
   def pending_games
-    self.games.select {|game| game.status == "pending" }
+    self.games.where(status: "pending")
   end
 
   def password
