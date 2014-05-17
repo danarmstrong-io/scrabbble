@@ -5,5 +5,4 @@ class Gametile < ActiveRecord::Base
   belongs_to :playergame
 
   validates :cell_id, presence: true
-  before_save {self.tile_id = nil}
 end
