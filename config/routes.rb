@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'join'
       post 'match'
       post 'submit'
+      post 'forfeit'
     end
   end
 

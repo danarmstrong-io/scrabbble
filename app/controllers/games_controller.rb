@@ -20,7 +20,8 @@ class GamesController < ApplicationController
   def join
     @game = Game.find(params[:id])
     Playergame.create(game: @game, player_id: session[:id], score: 0)
-    @game.status = "active"
+
+    @game.start
     @game.save
     redirect_to @game
   end
@@ -31,8 +32,23 @@ class GamesController < ApplicationController
   end
 
   def match
-    @game = Game.find(params[:id])
-    params[:words].split('-').all? { |word| !Word.where(text: word).empty? }
+    # @game = Game.find(params[:id])
+    # params[:words].split('-').all? { |word| !Word.where(text: word).empty? }
+    # Verifier(params[:words])
   end
 
+  def submit
+    @game = Game.find(params[:id])
+    # Add score to player score
+    @game.change_turn
+  end
+
+  def forfeit
+    @game = Game.find(params[:id])
+    @game.winner = @game.players.where.not(id: session[:id]).first
+    @game.complete
+    @game.save
+    redirect_to root_path
+
+  end
 end

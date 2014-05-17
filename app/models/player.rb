@@ -16,6 +16,14 @@ class Player < ActiveRecord::Base
     self.games.where(status: "pending")
   end
 
+  def get_tiles
+    7.times do
+      game_tile = Gametile.where(playergame_id: nil, game_id: 2).sample
+
+      game_tile.playergame = self
+    end
+  end
+
   def password
     @password ||= BCrypt::Password.new(password_digest)
   end
