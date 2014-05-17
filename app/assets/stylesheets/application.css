@@ -58,7 +58,7 @@ a {
 .main {
     margin-left:200px;
     float:right;
-    width:672px;
+    width:678px;
     height:677px;
     /*height:677px;*/
 }
@@ -156,16 +156,15 @@ a {
 }
 
 #tray {
-  text-align: center;
-  margin: 30px;
+    text-align: center;
     margin:0;
     padding:0;
-  width: 300px;
-  height: 60px;
-  background-color: lightgrey;
-  border-bottom: 5px solid maroon;
-  border-right: 3px solid maroon;
-  border-radius: 7px;
+    width: 300px;
+    height: 60px;
+    background-color: lightgrey;
+    border-bottom: 5px solid maroon;
+    border-right: 3px solid maroon;
+    border-radius: 7px;
 }
 
 

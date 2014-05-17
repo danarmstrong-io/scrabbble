@@ -11,6 +11,10 @@ class Game < ActiveRecord::Base
     Game.all.select{ |game| game.status == "pending" }
   end
 
+  def self.dimension
+    15
+  end
+
   def find_cell_letter(x, y)
     cell = Cell.where(:x_coord => x, :y_coord => y).first
     puts cell

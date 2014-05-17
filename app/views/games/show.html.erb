@@ -1,14 +1,9 @@
-
-    <table id="board">
-      <% (0..14).each do |y| %>
-        <tr>
-          <% (0..14).each do |x| %>
-          <td id="cell_<%= x %>x<%= y %>" data-x="<%=x%>" data-y="<%=y%>" class="cell">
-            <% if letter = @game.find_cell_letter(x, y) %>
-                <%= render partial: 'tile', locals: {letter: letter, value: Tile.find_by_letter(letter.upcase).value, active: false} %>
-            <% end %>
-          </td>
-          <% end %>
-        </tr>
+<table id="board">
+  <% Game.dimension.times do |y| %>
+    <tr>
+      <% Game.dimension.times do |x| %>
+        <%= cell_for(x, y) %>
       <% end %>
-    </table>
+    </tr>
+  <% end %>
+</table>
