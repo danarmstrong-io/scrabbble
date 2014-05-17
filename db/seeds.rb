@@ -1,14 +1,12 @@
 # # Seed words from dictionary.txt into Words table
 # File.open('db/dictionary.txt').each_line do |word|
-
+#
 #   Word.create!(text: word.chomp.upcase) if word.chomp!.length > 1
 # end
 
-Cell.destroy_all
 Player.destroy_all
 Playergame.destroy_all
 Gametile.destroy_all
-Tile.destroy_all
 Game.destroy_all
 
 
@@ -63,7 +61,7 @@ p1 = Player.create!(username: 'player1', password: 'password', email: 'player1@e
 p2 = Player.create!(username: 'player2', password: 'password', email: 'player2@example.com')
 
 # Create game, id 1
-g = Game.create!(status: 'pending', )
+g = Game.create!(status: 'pending')
 
 # Create playerGames id's 1 & 2
 p1g = Playergame.create!(player: p1, game: g)

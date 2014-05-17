@@ -4,5 +4,4 @@ class Gametile < ActiveRecord::Base
   belongs_to :cell
   belongs_to :playergame
 
-  validates :cell_id, presence: true
 end
