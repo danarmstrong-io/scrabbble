@@ -39,6 +39,57 @@ function tiles_are_inline(input_cells) {
   return true
 }
 
+var get_all_cells_included_on_submit = function(input_cells) {
+  // included cells encompass all cells containing previously placed tiles,
+  // on the axis of the submitted tiles,
+  // touching at least one submitted tile
+  var included_cells = []
+  // var included_cells = sort_input_cells(input_cells);
+  // console.log(included_cells);
+  var top_left_cell = find_top_left_tile_cell(input_cells);
+  var bottom_right_cell = find_bottom_right_tile_cell(input_cells);
+  var orientation;
+  // redundant for now...
+  console.log(top_left_cell.x+', '+top_left_cell.y);
+  console.log(bottom_right_cell.x+', '+bottom_right_cell.y);
+  if (top_left_cell.x == bottom_right_cell.x) { orientation = 'vertical' }
+  if (top_left_cell.y == bottom_right_cell.y) { orientation = 'horizontal' }
+  if (top_left_cell.x == bottom_right_cell.x && top_left_cell.y == bottom_right_cell.y) { orientation = 'one cell'}
+  console.log(orientation);
+  if (orientation == 'vertical') {
+    var top_cell = top_left_cell;
+    var bottom_cell = bottom_right_cell;
+    // look up from top cell
+    var cell_above = $('.cell[data-y="'+(top_cell.y-1)+'"][data-x="'+top_cell.x+'"]');
+    while (tile_exists_at(cell_above)) {
+      top_cell = new Cell(cell_above);
+      cell_above = $('.cell[data-y="'+(top_cell.y-1)+'"][data-x="'+top_cell.x+'"]');
+    }
+    // look down from bottom cell
+    var cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
+    while (tile_exists_at(cell_below)) {
+      bottom_cell = new Cell(cell_below);
+      cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
+    }
+
+
+  } else if (orientation == 'horizontal') {
+    // look left of left-most cell
+
+    // look right of right-most cell
+
+  } else if (orientation == 'one cell') { // handle this somehow??
+
+  } else {
+    alert('invalid cell arrangement')
+  }
+}
+
+var tile_exists_at = function(cell) {
+  if (cell.children().length > 0) { return true }
+  return false;
+};
+
 var tiles_touch_prev = function() {
   return true
 };
@@ -55,11 +106,30 @@ var tiles_touch_prev = function() {
     return false;
   };
 
-  var find_top_left_tile = function(input_cells) {
+  function compare_x(cell1, cell2) {
+    if (cell1.x < cell2.x) { return -1 } // cell1 is left of cell2 (greater)
+    if (cell1.x > cell2.x) { return 1 } // cell1 is right of cell2 (lesser)   
+    return 0; // cell1 and cell2 are on the same x axis
+  }
 
+  function compare_y(cell1, cell2) {
+    if (cell1.y < cell2.y) { return -1 } // cell1 is above cell2 (greater) 
+    if (cell1.y > cell2.y) { return 1 } // cell1 is below cell2 (lesser)
+    return 0; // cell1 and cell2 are on the same y axis
+  }
+
+  function sort_input_cells(input_cells) {
+    input_cells = input_cells.map(function(index, cell) { return new Cell(cell) });
+    input_cells.sort(compare_x);
+    input_cells.sort(compare_y);
+    return input_cells;
+  }
+
+  var find_top_left_tile_cell = function(input_cells) {
+    return sort_input_cells(input_cells)[0]
   };
-  var find_bottom_right_tile = function(input_cells) {
-
+  var find_bottom_right_tile_cell = function(input_cells) {
+    return sort_input_cells(input_cells)[input_cells.length-1]
   };
 
 var tiles_spell_valid_word = function() {
@@ -70,7 +140,7 @@ var tiles_spell_valid_word = function() {
 var get_new_words = function() {};
 
 
-// Submit event handler:
+// SubmitTurn event handler:
 var on_turn_submit = function (f) { $('#submit_turn').on( 'click', f ) };
 var validate_turn = function (e) {
   e.preventDefault();

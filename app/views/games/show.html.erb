@@ -1,7 +1,7 @@
 <table id="board">
-  <% Game.dimension.times do |x| %>
+  <% Game.dimension.times do |y| %>
     <tr>
-      <% Game.dimension.times do |y| %>
+      <% Game.dimension.times do |x| %>
         <%= cell_for(x, y) %>
       <% end %>
     </tr>
