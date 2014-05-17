@@ -51,16 +51,21 @@ https://www.hipchat.com/invite/113393/d0f3b853c9eac4a44c9ad2dbda4891ff
 ###To Do List
 1. Ruby
 	a. Models
-		1. 
+
+		1. User-defined methods
 	b. Controllers
+
 		1. Refactor
 		2. AJAX request actions
 	c. Views
+
 		1. Modify (0..14) to be constants on show view
 	d. Other
+
 		1. Update REST routes
 2. JS
 	a. Game Logic
+
 		1. Determine if placed word is valid
 		2. Locate all other words associated with placed word
 		3. Send all words to Serve using AJAX
