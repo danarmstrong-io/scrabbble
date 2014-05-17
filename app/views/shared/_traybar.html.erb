@@ -2,6 +2,9 @@
   <% if session[:id] %>
       <% if @game && @game.players.include?(Player.find(session[:id])) %>
           <%= render partial: 'shared/tray' %>
+
+      <% else %>
+          <%= button_to "Create Game", games_path, :class => "button create_game_button", :method => :post%>
       <% end %>
   <% else %>
       <%= render partial: 'shared/login' %>

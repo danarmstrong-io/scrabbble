@@ -26,6 +26,18 @@ a {
 
 }
 
+.special_font_small {
+    font-family:'Great Vibes', Helvetica, sans-serif;
+    font-size:26px;
+    font-weight: bold;
+}
+
+.special_font_large {
+    font-family:'Great Vibes', Helvetica, sans-serif;
+    font-size:40px;
+    font-weight: bold;
+}
+
 .container {
     background: rgb(242,214,138); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(242,214,138,1) 0%, rgba(232,173,102,1) 100%); /* FF3.6+ */
@@ -49,6 +61,10 @@ a {
     width:672px;
     height:677px;
     /*height:677px;*/
+}
+
+.profile {
+    text-align: center;
 }
 
 /*BOARD STUFF*/
@@ -176,9 +192,50 @@ a {
     text-align: center;
 }
 
+
+
 /*LOGIN IN*/
+
+.signup {
+    position:relative;
+    top:150px;
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    font-family:'Great Vibes', Helvetica, sans-serif;
+}
+
+.signup_title {
+
+
+
+}
+
 .login {
-    margin-left:65px;
+    position:relative;
+    top:10px;
+    margin-left:43px;
+    font-size:30px;
+    font-weight:bold;
+    font-family:'Great Vibes', Helvetica, sans-serif;
+}
+
+.field {
+    width:120px;
+    height:25px;
+    background-color:#FFFFCC;
+    position:relative;
+    bottom:5px;
+    font-size:16px;
+}
+
+.signin_button {
+    height: 32px;
+    line-height:32px;
+    width:80px;
+    position:relative;
+    left:3px;
+    bottom:2px;
 }
 
 .login div{
@@ -203,7 +260,32 @@ a {
     /*border: 1px dotted green;*/
 }
 
+.game_status {
+    width: 210px;
+    height:180px;
+    border:3px solid black;
+    margin: 5px auto;
+    margin-left:2px;
+    border-radius:4px;
+    /*text-align:center;*/
+}
 
+.game_info {
+    text-align:center;
+}
+
+.scores {
+    border:1px solid black;
+    margin:5px auto;
+    padding:5px;
+    width:160px;
+}
+
+.logout_button {
+    margin-left: 54px;
+    width:100px;
+    height: 30px;
+}
 
 .scrabble {
     /*margin-top:600px;*/
@@ -230,10 +312,14 @@ a {
     bottom: 40px;
 }
 
-/*.signup_button {*/
-    /*height: 80px;*/
-    /*width:100px;*/
-/*}*/
+.signup_button {
+    height: 30px;
+    line-height:30px;
+    width:80px;
+    position:relative;
+    left:3px;
+    bottom:5px;
+}
 
 .scrabble a {
     color:black;
@@ -244,6 +330,7 @@ a {
 
 .vertical_word {
     margin: 20px 80px;
+    height:435px;
     /*font-weight: bold;*/
 }
 
@@ -285,6 +372,44 @@ a {
 }
 
 
+
+/*SINGLE GAME STUFF*/
+
+.game_to_join {
+    margin: 5px auto;
+    border: 3px solid maroon;
+    border-radius:4px;
+    background-image:url('wood.png');
+    width: 300px;
+    text-align: center;
+    color: #FFFFCC;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.placeholder {
+    width:300px;
+}
+
+.games_to_join_table {
+    margin:0 auto;
+}
+
+.game_to_join_title {
+    color: #FFFFCC;
+    font-weight:bold;
+    font-size:26px;
+}
+
+.game_to_join_time_ago {
+    color: #FFFFCC;
+    font-size:16px;
+}
+
+.versus {
+    color: #FFFFCC;
+    font-size:20px;
+    display:inline;
+}
 
 
 
@@ -341,4 +466,14 @@ a {
 
 .ui-state-disabled{
     opacity: 1.0;
+}
+
+.create_game_button {
+    font-weight:bold;
+    margin-left:218px;
+    margin-top:3px;
+    line-height: 32px;
+    font-size: 32px;
+    height: 56px;
+    width:250px;
 }

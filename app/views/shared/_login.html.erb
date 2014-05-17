@@ -1,15 +1,15 @@
 <div class="login">
     <%= form_tag('/sessions', method: "post") do %>
         <div>
-          <%= label_tag :username %>
-          <%= text_field_tag :username %>
+          <%= label_tag "Username:" %>
+          <%= text_field_tag :username, nil, class: "field" %>
         </div>
         <div>
-          <%= label_tag :password %>
-          <%= password_field_tag :password %>
+          <%= label_tag "Password:" %>
+          <%= password_field_tag :password, nil, class: "field" %>
         </div>
         <div>
-          <%= submit_tag "Sign In", class: "button" %>
+          <%= submit_tag "Sign In", class: "button signin_button" %>
         </div>
     <% end %>
 </div>

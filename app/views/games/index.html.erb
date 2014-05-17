@@ -1,12 +1,7 @@
 <% if session[:id] %>
-    <h1>Welcome <%= @player.username %></h1>
-    <%= button_to "Create Game", games_path, :class => "button", :method => :post%>
     <% if @games %>
         <%= render partial: 'games_to_join' %>
     <% end %>
 <% else %>
     <%= render partial: 'shared/welcome' %>
 <% end %>
-
-
-
