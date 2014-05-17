@@ -3,9 +3,7 @@
     <%= link_to @game.players.first.username, player_path(@game.players.first) %>
     : <%= @game.playergames.first.score %>
   </div>
-  <% if @game.players.length > 1 %>
-      <div>
-        <%= link_to @game.players.last.username, player_path(@game.players.last) %>
-        : <%= @game.playergames.last.score %>
-      </div>
-  <% end %>
+  <div>
+    <%= link_to @game.players.last.username, player_path(@game.players.last) %>
+    : <%= @game.playergames.last.score %>
+  </div>
