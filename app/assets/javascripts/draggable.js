@@ -1,12 +1,12 @@
-// Instance variables
+// Local variables
 var current_tile;
 var current_cell;
 
+// Apply Jquery UI's draggable/droppable behavior to cells and tiles.
 var make_tray_tiles_draggable = function() {
   return $('#tray .tile').draggable({
     revert: 'invalid' });
 };
-
 var make_cells_droppable = function() {
   var cells = $('td.cell');
   $.each(cells, function(index, cell) {
@@ -23,6 +23,7 @@ var make_cells_droppable = function() {
   });
 };
 
+// Listener and callback to Update DOM based on user Dragging/Dropping
 var on_tile_grab = function(f) { $('.tile').on( 'mousedown', f ) };
 var define_current_tile = function(e) {
   current_tile = $(this)[0];
@@ -36,10 +37,10 @@ var define_current_tile = function(e) {
 };
 
 // SHUFFLE LETTERS - TO BE BUILT LATER
-var on_click_shuffle = function(f) {$("#shuffle").on("click", f)};
-var shuffle_tiles = function(e) {
-  e.preventDefault();
-}
+// var on_click_shuffle = function(f) {$("#shuffle").on("click", f)};
+// var shuffle_tiles = function(e) {
+//   e.preventDefault();
+// }
 
 // RESET LETTERS
 var on_click_reset = function(f) {$("#reset").on("click", f)};
@@ -55,12 +56,11 @@ var reset_tray = function(e) {
   make_cells_droppable();
 }
 
-
-
+// Runtime Code
 $(function() {
   make_tray_tiles_draggable();
   make_cells_droppable();
   on_tile_grab( define_current_tile );
-  on_click_shuffle( shuffle_tiles );
+  // on_click_shuffle( shuffle_tiles );
   on_click_reset( reset_tray );
 });

@@ -1,5 +1,5 @@
 
-  <div class="submit_button"><%= button_to "Submit", {}, :id => "submit_button", :class => "button" %></div>
+  <div class="submit_button"><%= button_to "Submit", {}, :id => "submit_button", :class => "button", :id => "submit_turn" %></div>
   <div class="tray">
     <table id="tray">
       <tr>
@@ -12,7 +12,7 @@
     </table>
   </div>
   <div class="tray_buttons">
-    <div><%= button_to "Shuffle", {}, :class => "button" %></div>
-    <div><%= button_to "Reset Letters", {}, :class => "button" %></div>
+    <div><%= button_to "Shuffle", {}, :class => "button", :id => "shuffle" %></div>
+    <div><%= button_to "Reset Letters", {}, :class => "button", :id => "reset" %></div>
   </div>
 </div>
