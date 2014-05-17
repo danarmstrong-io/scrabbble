@@ -96,16 +96,43 @@ var get_all_cells_included_on_submit = function(input_cells) {
   } else {
     alert('invalid cell arrangement')
   }
-
-
+  return included_cells;
 }
 
 
-var tiles_touch_prev = function() {
-  return true
+var tiles_touch_prev = function(input_cells) {
+  var tiles_touch = false
+  var included_cells = get_all_cells_included_on_submit(input_cells);
+  if (no_gaps_exist(included_cells)) {
+    var orientation = get_orientation(included_cells[0], included_cells[included_cells.length-1]);
+    console.log(orientation);
+    if (orientation == 'horizontal') { 
+      $.each(included_cells, function(index, cell) {
+        if ( tile_exists_at($('.cell[data-y="'+(cell.y-1)+'"][data-x="'+cell.x+'"]')) ||  // above
+             tile_exists_at($('.cell[data-y="'+(cell.y+1)+'"][data-x="'+cell.x+'"]'))  ) {// below
+          tiles_touch = true;
+        }
+      }); 
+    } else if (orientation == 'vertical') {
+      $.each(included_cells, function(index, cell) {
+        if ( tile_exists_at($('.cell[data-x="'+(cell.x-1)+'"][data-y="'+cell.y+'"]')) ||   // left
+             tile_exists_at($('.cell[data-x="'+(cell.x+1)+'"][data-y="'+cell.y+'"]'))  ) { // right
+          console.log("TRUE");
+          tiles_touch = true;
+        }
+      });
+    }
+  }
+  return tiles_touch
 };
 
 // helpers: TOUCHING, FIND_TOP_LEFT_TILE, FIND_BOTTOM_RIGHT_TILE, TILE_EXISTS_AT, GET_CELLS_BETWEEN_RANGE, GET_ORIENTATION
+  var no_gaps_exist = function( included_cells ) {
+    var no_gaps = true
+    $.each(included_cells, function(index, cell) { 
+      if ($('.cell[data-x="'+cell.x+'"][data-y="'+cell.y+'"]').children().length == 0) { no_gaps = false} } );
+    return no_gaps;
+  }
   var get_orientation = function(top_left_cell, bottom_right_cell) {
     var orientation; 
     if (top_left_cell.x == bottom_right_cell.x) { orientation = 'vertical' }
@@ -181,7 +208,9 @@ var validate_turn = function (e) {
   var input_cells = $('#board div.tile.ui-draggable').parent()
   if (tiles_are_inline(input_cells) && 
       tiles_touch_prev(input_cells) && 
-      tiles_spell_valid_word(input_cells) ) { alert('VALIDATIONS PASS!') }  
+      tiles_spell_valid_word(input_cells) ) { 
+    alert('VALIDATIONS PASS!') }  
+    // console.log(words_from_turn);
   else { alert("VALIDATIONS DO NOT PASS!") }
 }
 
