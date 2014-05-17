@@ -71,7 +71,7 @@ var get_all_cells_included_on_submit = function(input_cells) {
       bottom_cell = new Cell(cell_below);
       cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
     }
-    
+
 
   } else if (orientation == 'horizontal') {
     // look left of left-most cell
