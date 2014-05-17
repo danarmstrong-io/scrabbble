@@ -20,6 +20,8 @@ function tiles_are_inline(input_cells) {
       if (cell_x != x && cell_y != y ) {
         return false;
       }
+      x = cell_x;
+      y = cell_y;
     }
   } else if (input_cells.lenth == 0) {return false}
   return true
