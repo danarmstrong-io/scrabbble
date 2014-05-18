@@ -360,7 +360,7 @@ var validate_turn = function (e) {
         dataType: 'json',
         success: function (status) {
             console.log(status);
-            if (status == "true")
+            if (status == true)
             {
                 window.location.reload(true);
             }
