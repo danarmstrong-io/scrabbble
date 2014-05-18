@@ -46,9 +46,5 @@ module ViewHelper
     if (x == 6 || x == 8) && (y == 2 || y == 6 || y == 8 || y == 12)
       return "double_letter"
     end
-
-
   end
-
 end
-# 2 6 8 11
