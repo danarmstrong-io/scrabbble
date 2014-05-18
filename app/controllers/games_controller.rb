@@ -47,7 +47,7 @@ class GamesController < ApplicationController
         @game_tile.put_on_board(Cell.where(x_coord: tile[:x], y_coord: tile[:y]).first)
       end
       @player_game.replenish_tiles
-      # @game.change_turn
+      @game.change_turn
       render :json => "true"
     else
       render :json => "false"
