@@ -44,10 +44,20 @@ describe 'Game Methods' do
 	end
 
 	context "find_cell_letter" do
-		it "should determine the letter of a cell based on a grid location"
+		it "should determine the letter of a cell based on a grid location" do
+			g = Game.create!
+			c = Cell.create!(x_coord: 1, y_coord: 1)
+			t = Tile.create!(letter: "A")
+			gt = Gametile.create!(game: g, cell: c, tile: t)
+			expect(g.find_cell_letter(1,1)).to eq("A")
+		end
 
-		it "should return nil if no letter is in a cell"
-
+		it "should return nil if no letter is in a cell" do
+			g = Game.create!
+			c = Cell.create!(x_coord: 2, y_coord: 2)
+			gt = Gametile.create!(game: g, cell: c)
+			expect(g.find_cell_letter(2,2)).to eq(nil)
+		end
 	end
 
 	context "change_turn" do
