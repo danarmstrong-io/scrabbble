@@ -5,6 +5,6 @@ class Verifier
 	end
 
 	def valid?
-		word_array.all?{ |word| Word.where(text: word).any? }
-	end
+		@word_array.all?{ |word| Word.where(text: word).any? }
+  end
 end

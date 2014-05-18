@@ -1,11 +1,14 @@
-
-  <div class="submit_button"><%= button_to "Submit", {}, :id => "submit_button", :class => "button", :id => "submit_turn" %></div>
+  <% if @game.current_player_id == @player.id %>
+    <div class="submit_button"><%= button_to "Submit", submit_game_path, :id => "submit_button", :class => "button", :id => "submit_turn" %></div>
+  <% end %>
   <div class="tray">
     <table id="tray">
       <tr>
         <% (0..6).each do |tile_index| %>
-            <td class="cell">
-              <%= render partial: 'tile', locals: {letter: 'Q', value: 9, active: true} %>
+            <td class="tray_cell">
+              <% if @playertiles.length > tile_index %>
+                <%= render partial: 'tile', locals: {letter: @playertiles[tile_index].tile.letter, value: @playertiles[tile_index].tile.value, active: true} %>
+              <% end %>
             </td>
         <% end %>
       </tr>

@@ -15,6 +15,19 @@ class Game < ActiveRecord::Base
     15
   end
 
+  def self.calculate_score(words)
+    letters = words.gsub!(/-/, '').split('')
+    score = 0
+    letters.each do |letter|
+      score += Tile.where(letter: letter.upcase).first.value
+    end
+    score
+  end
+
+  def tiles_remaining
+    Gametile.where(playergame_id: nil, cell_id: nil, game: self.id).count
+  end
+
   def find_cell_letter(x, y)
     cell = Cell.where(:x_coord => x, :y_coord => y).first
     game_tile = Gametile.where(game: self, cell: cell).first
@@ -22,22 +35,23 @@ class Game < ActiveRecord::Base
   end
 
   def change_turn
-    self.current_player_id == 0 ? self.current_player_id = 1 : self.current_player_id = 0
     if self.current_player_id == self.players.first.id
       self.current_player_id = self.players.last.id
     else
       self.current_player_id = self.players.first.id
     end
+    self.save
   end
 
   def start
     self.status = 'active'
     self.current_player_id = self.players.first.id
     self.players.each do |player|
-      game_tiles = Gametile.where(playergame_id: nil, game: self).sample(7)
-      player_game = Playergame.where(game: self, player: player).first
+      game_tiles = Gametile.where(playergame_id: nil, cell_id: nil, game: self.id).sample(7)
+      player_game = Playergame.where(game: self.id, player: player).first
       game_tiles.each do |game_tile|
         game_tile.playergame_id = player_game.id
+        game_tile.save
       end
     end
     self.save

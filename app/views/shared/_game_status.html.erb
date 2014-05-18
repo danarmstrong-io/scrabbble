@@ -2,8 +2,12 @@
   <% if @game %>
     <div class="game_info">
         <div>
-            <h3>Game Number <%= @game.id %></h3>
+            Game Number <%= @game.id %>
         </div>
+        <% if @game.status == "active" %>
+            Tiles Remaining: <%= @game.tiles_remaining %>
+            Turn: <%= @game.current_player.username %>
+        <% end %>
     </div>
   <div class="scores">
     <% if @game.status == "active" %>
