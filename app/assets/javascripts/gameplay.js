@@ -72,8 +72,8 @@ var get_all_cells_included_on_submit = function(input_cells) {
       cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
     }
     console.log(top_cell);
-    console.log(bottom_cell);    
-  
+    console.log(bottom_cell);
+
   } else if (orientation == 'horizontal') {
     var left_cell = top_left_cell;
     var right_cell = bottom_right_cell;
@@ -90,7 +90,7 @@ var get_all_cells_included_on_submit = function(input_cells) {
       cell_right = $('.cell[data-x="'+(right_cell.x+1)+'"][data-y="'+right_cell.y+'"]');
     }
     console.log(left_cell);
-    console.log(right_cell);  
+    console.log(right_cell);
   } else if (orientation == 'one cell') { // handle this somehow??
 
   } else {
@@ -121,12 +121,12 @@ var tiles_touch_prev = function() {
 
   function compare_x(cell1, cell2) {
     if (cell1.x < cell2.x) { return -1 } // cell1 is left of cell2 (greater)
-    if (cell1.x > cell2.x) { return 1 } // cell1 is right of cell2 (lesser)   
+    if (cell1.x > cell2.x) { return 1 } // cell1 is right of cell2 (lesser)
     return 0; // cell1 and cell2 are on the same x axis
   }
 
   function compare_y(cell1, cell2) {
-    if (cell1.y < cell2.y) { return -1 } // cell1 is above cell2 (greater) 
+    if (cell1.y < cell2.y) { return -1 } // cell1 is above cell2 (greater)
     if (cell1.y > cell2.y) { return 1 } // cell1 is below cell2 (lesser)
     return 0; // cell1 and cell2 are on the same y axis
   }
@@ -158,9 +158,9 @@ var on_turn_submit = function (f) { $('#submit_turn').on( 'click', f ) };
 var validate_turn = function (e) {
   e.preventDefault();
   var input_cells = $('#board div.tile.ui-draggable').parent()
-  if (tiles_are_inline(input_cells) && 
-      tiles_touch_prev(input_cells) && 
-      tiles_spell_valid_word(input_cells) ) { alert('VALIDATIONS PASS!') }  
+  if (tiles_are_inline(input_cells) &&
+      tiles_touch_prev(input_cells) &&
+      tiles_spell_valid_word(input_cells) ) { alert('VALIDATIONS PASS!') }
   else { alert("VALIDATIONS DO NOT PASS!") }
 }
 
