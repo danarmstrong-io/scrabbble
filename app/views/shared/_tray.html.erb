@@ -1,10 +1,6 @@
 
 <div class="submit_button">
-      <%= button_to "Submit", submit_game_path, disabled: !(@game.current_player_id == @player.id), :id => "submit_turn submit_button", :class => "button", data: {disable_with: "Submitting..."} %>
-
-
-
-
+      <%= button_to "Submit", submit_game_path, disabled: !(@game.current_player_id == @player.id), :id => "submit_turn", :class => "button", data: {disable_with: "Submitting..."} %>
 </div>
   <div class="tray">
     <table id="tray">
