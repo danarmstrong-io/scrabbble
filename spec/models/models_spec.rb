@@ -82,10 +82,6 @@ describe "All Model -" do
 		it "defaults to a tile value of nil" do
 			expect(gt1.tile_id).to eq nil	
 		end
-
-		it "requires a cell at creation" do
-			Gametile.new.should have(1).error_on(:cell_id)
-		end
 	end
 
 	context Tile do
