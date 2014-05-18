@@ -123,6 +123,8 @@ var tiles_touch_prev = function(input_cells) {
                     tile_exists_at($('.cell[data-x="'+(cell.x+1)+'"][data-y="'+cell.y+'"]'))  ) { // right
                     console.log("TRUE");
                     tiles_touch = true;
+                } else if ($('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]').hasClass('ui-draggable') != true) {
+                  tiles_touch = true;
                 }
             });
         }
@@ -349,25 +351,25 @@ var validate_turn = function (e) {
       words.push(word);
     })
     var parameterized_words = words.join('-');
-//    alert(parameterized_words);
+   alert(parameterized_words);
     var game_id = $("#board").data("game_id");
-    $.ajax({
-        url: '/games/' + game_id + '/submit',
-        type: 'POST',
-        data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
-        dataType: 'json',
-        success: function (status) {
-            console.log(status);
-            if (status == "true")
-            {
-                window.location.reload(true);
-            }
-            else
-            {
-                alert("Invalid words: " + parameterized_words);
-            }
-        }
-    });
+    // $.ajax({
+    //     url: '/games/' + game_id + '/submit',
+    //     type: 'POST',
+    //     data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
+    //     dataType: 'json',
+    //     success: function (status) {
+    //         console.log(status);
+    //         if (status == "true")
+    //         {
+    //             window.location.reload(true);
+    //         }
+    //         else
+    //         {
+    //             alert("Invalid words: " + parameterized_words);
+    //         }
+    //     }
+    // });
   } else { 
     alert("Invalid Submission") 
   }
