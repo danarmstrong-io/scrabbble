@@ -31,7 +31,7 @@ class Game < ActiveRecord::Base
   def find_cell_letter(x, y)
     cell = Cell.where(:x_coord => x, :y_coord => y).first
     game_tile = Gametile.where(game: self, cell: cell).first
-    game_tile ? game_tile.tile.letter : nil
+    game_tile.tile ? game_tile.tile.letter : nil
   end
 
   def change_turn
