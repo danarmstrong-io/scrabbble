@@ -61,7 +61,7 @@ p1 = Player.create!(username: 'player1', password: 'password', email: 'player1@e
 p2 = Player.create!(username: 'player2', password: 'password', email: 'player2@example.com')
 
 # Create game, id 1
-g = Game.create!(status: 'pending')
+g = Game.create!(status: 'active', current_player: p1)
 
 # Create playerGames id's 1 & 2
 p1g = Playergame.create!(player: p1, game: g, score: 0)
@@ -69,18 +69,16 @@ p2g = Playergame.create!(player: p2, game: g, score: 0)
 
 # give 7 starting tiles to each player
 tiles = Tile.all
+tiles.each do |tile|
+  Gametile.create!(game: g, tile: tile)
+end
 
-p1_sample = tiles.sample(7)
-p1_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p1g) }
+gametiles = Gametile.all
+p1g.replenish_tiles
+p2g.replenish_tiles
 
-tiles -= p1_sample
-
-p2_sample = tiles.sample(7)
-p2_sample.map { |tile| Gametile.create!(game: g, tile: tile, playergame: p2g) }
-
-# put some tiles on the board
-
-board_sample = tiles.sample(50)
-board_sample.each do |tile|
-  Gametile.create!(game: g, tile:tile, cell: Cell.all.sample)
+50.times do
+  gt = Gametile.where(playergame_id: nil, cell_id: nil, game: g).sample
+  gt.cell = Cell.all.sample
+  gt.save
 end
