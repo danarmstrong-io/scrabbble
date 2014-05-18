@@ -12,14 +12,12 @@ class Playergame < ActiveRecord::Base
 
   def replenish_tiles
     game_tiles = self.gametiles
-    (8-game_tiles.length).times do
+    (7-game_tiles.length).times do
       self.draw_tile
     end
   end
 
   def add_to_score(score)
-    puts score
-    puts self.score
     self.score += score
     self.save
   end
