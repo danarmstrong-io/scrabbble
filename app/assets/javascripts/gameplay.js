@@ -94,7 +94,7 @@ var get_all_cells_included_on_submit = function(input_cells) {
     included_cells = get_cells_between_range(left_cell, right_cell, orientation)
     console.log(included_cells)
   } else if (orientation == 'one cell') { // handle this somehow??
-
+    alert('A one cell submission...')
   } else {
     alert('invalid cell arrangement')
   }
@@ -148,7 +148,7 @@ var tiles_touch_prev = function(input_cells) {
     console.log(bottom_right_cell);
     if (top_left_cell.x == bottom_right_cell.x) { orientation = 'vertical' }
     if (top_left_cell.y == bottom_right_cell.y) { orientation = 'horizontal' }
-    if (top_left_cell.x == bottom_right_cell.x && top_left_cell.y == bottom_right_cell.y) { orientation = 'one cell'}
+    if (input_cells.length == 0) { orientation = 'one cell'}
     return orientation;
   }
   var get_cells_between_range = function(top_left_cell, bottom_right_cell, orientation) {
