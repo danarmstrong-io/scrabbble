@@ -64,8 +64,8 @@ p2 = Player.create!(username: 'player2', password: 'password', email: 'player2@e
 g = Game.create!(status: 'pending')
 
 # Create playerGames id's 1 & 2
-p1g = Playergame.create!(player: p1, game: g)
-p2g = Playergame.create!(player: p2, game: g)
+p1g = Playergame.create!(player: p1, game: g, score: 0)
+p2g = Playergame.create!(player: p2, game: g, score: 0)
 
 # give 7 starting tiles to each player
 tiles = Tile.all

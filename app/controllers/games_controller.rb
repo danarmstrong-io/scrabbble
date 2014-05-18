@@ -31,8 +31,10 @@ class GamesController < ApplicationController
   end
 
   def submit
+    # puts params[:tiles]
     if Verifier.new(params[:words]).valid?
       @game = Game.find(params[:id])
+      puts params[:words]
       @player_game = Playergame.where(game: @game, player: @game.current_player_id).first
       @player_game.add_to_score(Game.calculate_score(params[:words]))
       @game_tiles = @player_game.gametiles
@@ -47,6 +49,7 @@ class GamesController < ApplicationController
       end
       @player_game.replenish_tiles
       @game.change_turn
+      "true"
     else
       "false"
     end

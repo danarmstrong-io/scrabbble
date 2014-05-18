@@ -16,11 +16,13 @@ class Game < ActiveRecord::Base
   end
 
   def self.calculate_score(words)
-    letters = words.gsub!(/-/, '').split('')
+    letters = words.gsub(/-/, '').split('')
+    puts letters
     score = 0
     letters.each do |letter|
-      score += Tile.where(letter: letter.upcase).first.value
+      score += Tile.where(letter: letter).first.value
     end
+    puts score
     score
   end
 
