@@ -12,7 +12,7 @@ class Playergame < ActiveRecord::Base
 
   def replenish_tiles
     game_tiles = self.gametiles
-    (7-game_tiles.length).times do
+    (7-game_tiles.count).times do
       self.draw_tile
     end
   end
