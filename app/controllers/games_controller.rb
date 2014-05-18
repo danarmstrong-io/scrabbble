@@ -30,27 +30,26 @@ class GamesController < ApplicationController
     @playertiles = Playergame.where(player: @player, game: @game).first.gametiles
   end
 
-  def match
-    Verifier.new(params[:words]).valid?
-  end
-
   def submit
-    @game = Game.find(params[:id])
-    @player_game = Playergame.where(game: @game, player: @game.current_player_id).first
-    # score =  Game.calculate_score(params[:words])
-    # @player_game.add_to_score(score)
-    @game_tiles = @player_game.gametiles
-    input_tiles = params[:tiles].values
-    input_tiles.each do |tile|
-      @game_tiles.each do |gametile|
-        if gametile.tile.letter == tile[:letter]
-          @game_tile = gametile
+    if Verifier.new(params[:words]).valid?
+      @game = Game.find(params[:id])
+      @player_game = Playergame.where(game: @game, player: @game.current_player_id).first
+      @player_game.add_to_score(Game.calculate_score(params[:words]))
+      @game_tiles = @player_game.gametiles
+      input_tiles = params[:tiles].values
+      input_tiles.each do |tile|
+        @game_tiles.each do |gametile|
+          if gametile.tile.letter == tile[:letter]
+            @game_tile = gametile
+          end
         end
+        @game_tile.put_on_board(Cell.where(x_coord: tile[:x], y_coord: tile[:y]).first)
       end
-      @game_tile.put_on_board(Cell.where(x_coord: tile[:x], y_coord: tile[:y]).first)
+      @player_game.replenish_tiles
+      @game.change_turn
+    else
+      "false"
     end
-    @player_game.replenish_tiles
-    @game.change_turn
   end
 
   def forfeit
