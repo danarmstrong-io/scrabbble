@@ -18,6 +18,8 @@ class Playergame < ActiveRecord::Base
   end
 
   def add_to_score(score)
+    puts score
+    puts self.score
     self.score += score
     self.save
   end

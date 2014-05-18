@@ -9,14 +9,9 @@
 //        var cell = tile.parent();
 //        tiles.push({letter: tile.children().eq(1).html(), x: cell.data('x'), y: cell.data('y')})
 //    }
-//    var game_id = $("#board").data("game_id");
-//    $.ajax({
-//        url: '/games/' + game_id + '/submit',
-//        type: 'POST',
-//        data: {tiles: tiles},
-//        dataType: 'json'
-//    });
-//    window.location.reload(true);
+//
+//
+//
 //};
 //
 //$(function(){

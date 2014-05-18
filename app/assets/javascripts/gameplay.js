@@ -320,6 +320,18 @@ var get_cell_chains = function(input_cells) {
   return cell_chains
 };
 
+var find_new_tiles_on_board = function () {
+    var input_cells = $('#board div.tile.ui-draggable');
+    var tiles = [];
+    for(var i = 0; i < input_cells.length; i++)
+    {
+        var tile = $(input_cells[i]);
+        var cell = tile.parent();
+        tiles.push({letter: tile.children().eq(1).html(), x: cell.data('x'), y: cell.data('y')})
+    }
+    return tiles;
+};
+
 
 // SubmitTurn event handler:
 var on_turn_submit = function (f) { $('#submit_turn').on( 'click', f ) };
@@ -337,7 +349,25 @@ var validate_turn = function (e) {
       words.push(word);
     })
     var parameterized_words = words.join('-');
-    alert(parameterized_words);
+//    alert(parameterized_words);
+    var game_id = $("#board").data("game_id");
+    $.ajax({
+        url: '/games/' + game_id + '/submit',
+        type: 'POST',
+        data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
+        dataType: 'json',
+        success: function (status) {
+            console.log(status);
+            if (status == "true")
+            {
+                window.location.reload(true);
+            }
+            else
+            {
+                alert("Invalid words: " + parameterized_words);
+            }
+        }
+    });
   } else { 
     alert("Invalid Submission") 
   }
