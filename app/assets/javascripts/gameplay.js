@@ -115,6 +115,8 @@ var tiles_touch_prev = function(input_cells) {
                 if ( tile_exists_at($('.cell[data-y="'+(cell.y-1)+'"][data-x="'+cell.x+'"]')) ||  // above
                     tile_exists_at($('.cell[data-y="'+(cell.y+1)+'"][data-x="'+cell.x+'"]'))  ) {// below
                     tiles_touch = true;
+                } else if ($('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]').hasClass('ui-draggable') != true) {
+                  tiles_touch = true;
                 }
             });
         } else if (orientation == 'vertical') {
@@ -322,6 +324,15 @@ var get_cell_chains = function(input_cells) {
   return cell_chains
 };
 
+var on_first_turn = function(input_cells) {
+  var is_first_turn = false
+  $.each(input_cells, function(i, cell) {
+    c = new Cell($(cell));
+    if (c.x == 7 && c.y == 7 && ($('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]').hasClass('ui-draggable'))) {is_first_turn = true};
+  });
+  return is_first_turn;
+};
+
 var find_new_tiles_on_board = function () {
     var input_cells = $('#board div.tile.ui-draggable');
     var tiles = [];
@@ -340,7 +351,13 @@ var on_turn_submit = function (f) { $('#submit_turn').on( 'click', f ) };
 var validate_turn = function (e) {
   e.preventDefault();
   var input_cells = $('#board div.tile.ui-draggable').parent()
-  if (tiles_are_inline(input_cells) && 
+  if (input_cells.length == 1){
+    alert("ONE CELL SUBMISSION HANDLING..."); 
+  } else if (on_first_turn(input_cells)) {
+    // alert("first turn case");
+    var first_word = chain_to_word(sort_input_cells(input_cells));
+    alert('first_word: '+first_word);
+  } else if (tiles_are_inline(input_cells) && 
       tiles_touch_prev(input_cells) ) { 
     var words = [];
     var cell_chains = get_cell_chains(input_cells);
@@ -370,10 +387,11 @@ var validate_turn = function (e) {
             }
         }
     });
+
   } else { 
     alert("Invalid Submission") 
   }
-}
+};
 
 // runtime code
 $(function(){
