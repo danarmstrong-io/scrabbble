@@ -42,6 +42,7 @@ class GamesController < ApplicationController
         @game_tiles.each do |gametile|
           if gametile.tile.letter == tile[:letter]
             @game_tile = gametile
+            break
           end
         end
         @game_tile.put_on_board(Cell.where(x_coord: tile[:x], y_coord: tile[:y]).first)
