@@ -31,6 +31,8 @@ gem 'spring',        group: :development
 
 gem 'bcrypt-ruby', '~> 3.1.5'
 
+gem 'json'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

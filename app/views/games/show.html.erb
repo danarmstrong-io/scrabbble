@@ -1,4 +1,4 @@
-<table id="board">
+<table id="board" data-game_id="<%= @game.id %>">
   <% Game.dimension.times do |y| %>
     <tr>
       <% Game.dimension.times do |x| %>

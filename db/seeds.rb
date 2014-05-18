@@ -1,8 +1,8 @@
 # # Seed words from dictionary.txt into Words table
-# File.open('db/dictionary.txt').each_line do |word|
-#
-#   Word.create!(text: word.chomp.upcase) if word.chomp!.length > 1
-# end
+File.open('db/dictionary.txt').each_line do |word|
+
+  Word.create!(text: word.chomp.upcase) if word.chomp!.length > 1
+end
 
 Player.destroy_all
 Playergame.destroy_all

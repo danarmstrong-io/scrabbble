@@ -99,6 +99,11 @@ a {
     border:2px solid white;
 }
 
+.tray_cell {
+    width:44px;
+    border:2px solid white;
+}
+
 
 /*TILE STUFF*/
 
