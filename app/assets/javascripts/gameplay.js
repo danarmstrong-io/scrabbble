@@ -446,7 +446,7 @@ var validate_turn = function (e) {
   } else { 
     alert("Invalid Submission") 
   }
-}
+};
 
 // runtime code
 $(function(){
