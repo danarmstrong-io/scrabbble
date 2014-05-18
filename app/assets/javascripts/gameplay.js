@@ -352,9 +352,26 @@ var validate_turn = function (e) {
   e.preventDefault();
   var input_cells = $('#board div.tile.ui-draggable').parent()
   if (input_cells.length == 1){
-    alert("ONE CELL SUBMISSION HANDLING..."); 
+    var words = [];
+    var single_cell = [new Cell(input_cells[0])]
+    var left_cell = find_left_cell(single_cell)
+    var right_cell = find_right_cell(single_cell)
+    var top_cell = find_top_cell(single_cell)
+    var bottom_cell = find_bottom_cell(single_cell)
+    var horizontal_chain = get_cells_between_range(left_cell, right_cell, 'horizontal')
+    var vertical_chain = get_cells_between_range(top_cell, bottom_cell, 'vertical')
+    var cell_chains = []
+    if (horizontal_chain.length > 1) { cell_chains.push(horizontal_chain) }
+    if (vertical_chain.length > 1) { cell_chains.push(vertical_chain) }
+    $.each(cell_chains, function(i, chain) {
+      console.log(chain);
+      var word = chain_to_word(chain);
+      console.log(word);
+      words.push(word);
+    });
+    var parameterized_words = words.join('-');
+    alert(parameterized_words);
   } else if (on_first_turn(input_cells)) {
-    // alert("first turn case");
     var first_word = chain_to_word(sort_input_cells(input_cells));
     alert('first_word: '+first_word);
   } else if (tiles_are_inline(input_cells) && 
@@ -369,7 +386,7 @@ var validate_turn = function (e) {
     })
     var parameterized_words = words.join('-');
    alert(parameterized_words);
-    // var game_id = $("#board").data("game_id");
+    var game_id = $("#board").data("game_id");
     // $.ajax({
     //     url: '/games/' + game_id + '/submit',
     //     type: 'POST',
@@ -377,7 +394,7 @@ var validate_turn = function (e) {
     //     dataType: 'json',
     //     success: function (status) {
     //         console.log(status);
-    //         if (status == "true")
+    //         if (status == true)
     //         {
     //             window.location.reload(true);
     //         }
