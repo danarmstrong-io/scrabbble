@@ -333,6 +333,24 @@ var on_first_turn = function(input_cells) {
   return is_first_turn;
 };
 
+var cell_has_a_neighbor = function(cell) {
+  var cell = new Cell(cell)
+  var has_a_neighbor = false;
+  var tile_exists_above = tile_exists_at($('.cell[data-y="'+(cell.y-1)+'"][data-x="'+cell.x+'"]'))
+  var tile_exists_below = tile_exists_at($('.cell[data-y="'+(cell.y+1)+'"][data-x="'+cell.x+'"]'))
+  var tile_exists_left = tile_exists_at($('.cell[data-x="'+(cell.x-1)+'"][data-y="'+cell.y+'"]'))
+  var tile_exists_right = tile_exists_at($('.cell[data-x="'+(cell.x+1)+'"][data-y="'+cell.y+'"]'))
+  
+  // console.log('above: '+tile_exists_above)  
+  // console.log('below: '+tile_exists_below)
+  // console.log('left: '+tile_exists_left)
+  // console.log('right: '+tile_exists_right)
+  if ( tile_exists_above || tile_exists_below || tile_exists_left || tile_exists_right) {
+    has_a_neighbor = true;
+  }
+  return has_a_neighbor
+};
+
 var find_new_tiles_on_board = function () {
     var input_cells = $('#board div.tile.ui-draggable');
     var tiles = [];
@@ -351,31 +369,52 @@ var on_turn_submit = function (f) { $('#submit_turn').on( 'click', f ) };
 var validate_turn = function (e) {
   e.preventDefault();
   var input_cells = $('#board div.tile.ui-draggable').parent()
-  if (input_cells.length == 1){
-    var words = [];
-    var single_cell = [new Cell(input_cells[0])]
-    var left_cell = find_left_cell(single_cell)
-    var right_cell = find_right_cell(single_cell)
-    var top_cell = find_top_cell(single_cell)
-    var bottom_cell = find_bottom_cell(single_cell)
-    var horizontal_chain = get_cells_between_range(left_cell, right_cell, 'horizontal')
-    var vertical_chain = get_cells_between_range(top_cell, bottom_cell, 'vertical')
-    var cell_chains = []
-    if (horizontal_chain.length > 1) { cell_chains.push(horizontal_chain) }
-    if (vertical_chain.length > 1) { cell_chains.push(vertical_chain) }
-    $.each(cell_chains, function(i, chain) {
-      console.log(chain);
-      var word = chain_to_word(chain);
-      console.log(word);
-      words.push(word);
-    });
-    var parameterized_words = words.join('-');
-    alert(parameterized_words);
+  if ( input_cells.length == 1 ) {
+    if (cell_has_a_neighbor(input_cells[0])) {  
+      var words = [];
+      var single_cell = [new Cell(input_cells[0])]
+      var left_cell = find_left_cell(single_cell)
+      var right_cell = find_right_cell(single_cell)
+      var top_cell = find_top_cell(single_cell)
+      var bottom_cell = find_bottom_cell(single_cell)
+      var horizontal_chain = get_cells_between_range(left_cell, right_cell, 'horizontal')
+      var vertical_chain = get_cells_between_range(top_cell, bottom_cell, 'vertical')
+      var cell_chains = []
+      if (horizontal_chain.length > 1) { cell_chains.push(horizontal_chain) }
+      if (vertical_chain.length > 1) { cell_chains.push(vertical_chain) }
+      $.each(cell_chains, function(i, chain) {
+        console.log(chain);
+        var word = chain_to_word(chain);
+        console.log(word);
+        words.push(word);
+      });
+      var parameterized_words = words.join('-');
+      alert(parameterized_words);
+      $.ajax({
+        url: '/games/' + game_id + '/submit',
+        type: 'POST',
+        data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
+        dataType: 'json',
+        success: function (status) {
+            console.log(status);
+            if (status == true)
+            {
+                window.location.reload(true);
+            }
+            else
+            {
+                alert("Invalid words: " + parameterized_words);
+            }
+        }
+      });
+    } else {
+      alert("Invalid Submission")
+    }
   } else if (on_first_turn(input_cells)) {
     var first_word = chain_to_word(sort_input_cells(input_cells));
     alert('first_word: '+first_word);
   } else if (tiles_are_inline(input_cells) && 
-      tiles_touch_prev(input_cells) ) { 
+             tiles_touch_prev(input_cells) ) { 
     var words = [];
     var cell_chains = get_cell_chains(input_cells);
     $.each(cell_chains, function(i, chain) {
@@ -387,23 +426,23 @@ var validate_turn = function (e) {
     var parameterized_words = words.join('-');
    alert(parameterized_words);
     var game_id = $("#board").data("game_id");
-    // $.ajax({
-    //     url: '/games/' + game_id + '/submit',
-    //     type: 'POST',
-    //     data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
-    //     dataType: 'json',
-    //     success: function (status) {
-    //         console.log(status);
-    //         if (status == true)
-    //         {
-    //             window.location.reload(true);
-    //         }
-    //         else
-    //         {
-    //             alert("Invalid words: " + parameterized_words);
-    //         }
-    //     }
-    // });
+    $.ajax({
+        url: '/games/' + game_id + '/submit',
+        type: 'POST',
+        data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
+        dataType: 'json',
+        success: function (status) {
+            console.log(status);
+            if (status == true)
+            {
+                window.location.reload(true);
+            }
+            else
+            {
+                alert("Invalid words: " + parameterized_words);
+            }
+        }
+    });
   } else { 
     alert("Invalid Submission") 
   }
