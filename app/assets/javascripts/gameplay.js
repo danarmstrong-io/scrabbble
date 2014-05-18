@@ -325,7 +325,6 @@ var get_cell_chains = function(input_cells) {
 };
 
 var on_first_turn = function(input_cells) {
-    alert('first_turn_test');
   var is_first_turn = false
   $.each(input_cells, function(i, cell) {
     c = new Cell($(cell));
@@ -413,7 +412,6 @@ var validate_turn = function (e) {
     }
   } else if (on_first_turn(input_cells)) {
     var first_word = chain_to_word(sort_input_cells(input_cells));
-    alert(first_word);
     var parameterized_words = first_word;
       $.ajax({
           url: '/games/' + game_id + '/submit',
@@ -443,7 +441,6 @@ var validate_turn = function (e) {
       words.push(word);
     })
     var parameterized_words = words.join('-');
-   alert(parameterized_words);
     var game_id = $("#board").data("game_id");
     $.ajax({
         url: '/games/' + game_id + '/submit',
