@@ -369,28 +369,29 @@ var validate_turn = function (e) {
     })
     var parameterized_words = words.join('-');
    alert(parameterized_words);
-    // var game_id = $("#board").data("game_id");
-    // $.ajax({
-    //     url: '/games/' + game_id + '/submit',
-    //     type: 'POST',
-    //     data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
-    //     dataType: 'json',
-    //     success: function (status) {
-    //         console.log(status);
-    //         if (status == "true")
-    //         {
-    //             window.location.reload(true);
-    //         }
-    //         else
-    //         {
-    //             alert("Invalid words: " + parameterized_words);
-    //         }
-    //     }
-    // });
+    var game_id = $("#board").data("game_id");
+    $.ajax({
+        url: '/games/' + game_id + '/submit',
+        type: 'POST',
+        data: {tiles: find_new_tiles_on_board(), words: parameterized_words},
+        dataType: 'json',
+        success: function (status) {
+            console.log(status);
+            if (status == true)
+            {
+                window.location.reload(true);
+            }
+            else
+            {
+                alert("Invalid words: " + parameterized_words);
+            }
+        }
+    });
+
   } else { 
     alert("Invalid Submission") 
   }
-}
+};
 
 // runtime code
 $(function(){
