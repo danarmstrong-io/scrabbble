@@ -46,7 +46,7 @@ var get_all_cells_included_on_submit = function(input_cells) {
   var included_cells = []
   var top_left_cell = find_top_left_tile_cell(input_cells);
   var bottom_right_cell = find_bottom_right_tile_cell(input_cells);
-  var orientation = get_orientation( top_left_cell, bottom_right_cell );
+  var orientation = get_orientation( input_cells );
   // redundant for now...
   console.log(top_left_cell.x+', '+top_left_cell.y);
   console.log(bottom_right_cell.x+', '+bottom_right_cell.y);
@@ -67,6 +67,7 @@ var get_all_cells_included_on_submit = function(input_cells) {
       bottom_cell = new Cell(cell_below);
       cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
     }
+    console.log('--inside get submitted---')
     console.log(top_cell);
     console.log(bottom_cell);    
     included_cells = get_cells_between_range(top_cell, bottom_cell, orientation)
@@ -87,6 +88,7 @@ var get_all_cells_included_on_submit = function(input_cells) {
       right_cell = new Cell(cell_right)
       cell_right = $('.cell[data-x="'+(right_cell.x+1)+'"][data-y="'+right_cell.y+'"]');
     }
+    console.log('--inside get submitted---')
     console.log(left_cell);
     console.log(right_cell);  
     included_cells = get_cells_between_range(left_cell, right_cell, orientation)
@@ -104,7 +106,10 @@ var tiles_touch_prev = function(input_cells) {
   var tiles_touch = false
   var included_cells = get_all_cells_included_on_submit(input_cells);
   if (no_gaps_exist(included_cells)) {
-    var orientation = get_orientation(included_cells[0], included_cells[included_cells.length-1]);
+    // var orientation = get_orientation(included_cells)
+    var orientation;
+    if (included_cells[0].y == included_cells[1].y) {orientation = 'horizontal'} 
+    if (included_cells[0].x == included_cells[1].x) {orientation = 'vertical'}
     console.log(orientation);
     if (orientation == 'horizontal') { 
       $.each(included_cells, function(index, cell) {
@@ -133,8 +138,14 @@ var tiles_touch_prev = function(input_cells) {
       if ($('.cell[data-x="'+cell.x+'"][data-y="'+cell.y+'"]').children().length == 0) { no_gaps = false} } );
     return no_gaps;
   }
-  var get_orientation = function(top_left_cell, bottom_right_cell) {
+  var get_orientation = function(input_cells) {
     var orientation; 
+    var top_left_cell = find_top_left_tile_cell(input_cells);
+    console.log('top-left:')
+    console.log(top_left_cell);
+    var bottom_right_cell = find_bottom_right_tile_cell(input_cells)
+    console.log('bottom_right:')
+    console.log(bottom_right_cell);
     if (top_left_cell.x == bottom_right_cell.x) { orientation = 'vertical' }
     if (top_left_cell.y == bottom_right_cell.y) { orientation = 'horizontal' }
     if (top_left_cell.x == bottom_right_cell.x && top_left_cell.y == bottom_right_cell.y) { orientation = 'one cell'}
@@ -193,12 +204,121 @@ var tiles_touch_prev = function(input_cells) {
     return false;
   };
 
+  var find_top_cell = function(input_cells) {
+    var top_cell = input_cells[0];
+    // look up from top cell
+    var cell_above = $('.cell[data-y="'+(top_cell.y-1)+'"][data-x="'+top_cell.x+'"]');
+    if (tile_exists_at(cell_above)) {
+      while (tile_exists_at(cell_above)) {
+        top_cell = new Cell(cell_above);
+        cell_above = $('.cell[data-y="'+(top_cell.y-1)+'"][data-x="'+top_cell.x+'"]');
+      }
+    }
+    return top_cell
+  }
+
+  var find_bottom_cell = function(input_cells) {
+    var bottom_cell = input_cells[input_cells.length-1];
+    // look down from bottom cell
+    var cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
+    if (tile_exists_at(cell_below)) {
+      while (tile_exists_at(cell_below)) {
+        bottom_cell = new Cell(cell_below);
+        cell_below = $('.cell[data-y="'+(bottom_cell.y+1)+'"][data-x="'+bottom_cell.x+'"]');
+      }
+    }
+    return bottom_cell
+  }
+
+  var find_left_cell = function(input_cells) {
+    var left_cell = input_cells[0];
+    // look left from left_cell
+    var cell_left = $('.cell[data-x="'+(left_cell.x-1)+'"][data-y="'+left_cell.y+'"]');
+    if (tile_exists_at(cell_left)) {
+      console.log("Cell exists to left")
+      while (tile_exists_at(cell_left)) {
+        left_cell = new Cell(cell_left);
+        cell_left = $('.cell[data-x="'+(left_cell.x-1)+'"][data-y="'+left_cell.y+'"]');
+      }
+    }
+    return left_cell
+  }
+
+  var find_right_cell = function(input_cells) {
+    var right_cell = input_cells[0];
+    // look right from right_cell
+    var cell_right = $('.cell[data-x="'+(right_cell.x+1)+'"][data-y="'+right_cell.y+'"]');
+    if (tile_exists_at(cell_right)) {
+      console.log("Cell exists to right")
+      while (tile_exists_at(cell_right)) {
+        right_cell = new Cell(cell_right)
+        cell_right = $('.cell[data-x="'+(right_cell.x+1)+'"][data-y="'+right_cell.y+'"]');
+      }
+    }
+    return right_cell
+  }
+
+  var chain_to_word = function(cell_chain) {
+    var letter_arr = [];
+    $.each(cell_chain,  function(i, cell) {
+      letter_arr.push(cell.letter);
+    })
+    var word = letter_arr.join('')
+    return word;
+  }
 var tiles_spell_valid_word = function() {
   return true
 };
 
 // Get array of new_words formed by tiles
-var get_new_words = function() {};
+var get_cell_chains = function(input_cells) {
+  var cell_chains = []
+  if (input_cells.length == 1) {
+    
+  } else {
+    var orientation = get_orientation(input_cells);
+    input_cells = sort_input_cells(input_cells);
+    if (orientation == 'vertical') {
+      var top_cell = find_top_cell(input_cells);
+      var bottom_cell = find_bottom_cell(input_cells);
+      var main_chain = get_cells_between_range(top_cell, bottom_cell, orientation);
+      cell_chains.push(main_chain);
+      $.each(main_chain, function(index, cell) { // iterate through main chain
+        var tile_exists_left = tile_exists_at($('.cell[data-x="'+(cell.x-1)+'"][data-y="'+cell.y+'"]'))
+        var tile_exists_right = tile_exists_at($('.cell[data-x="'+(cell.x+1)+'"][data-y="'+cell.y+'"]'))
+        var tile_is_recent = $('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]').find('div.tile').hasClass('ui-draggable')
+        console.log(cell + " Tile is recent: " + tile_is_recent)
+        if ( tile_is_recent && (tile_exists_left || tile_exists_right) ) { 
+          var left_cell = find_left_cell([new Cell ($('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]'))])
+          var right_cell = find_right_cell([new Cell ($('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]'))])
+          var horizontal_chain = get_cells_between_range(left_cell, right_cell, 'horizontal');
+          console.log(horizontal_chain)
+          cell_chains.push(horizontal_chain);
+        }      
+      });
+    } else if (orientation == 'horizontal') {
+      var left_cell = find_left_cell(input_cells)
+      var right_cell = find_right_cell(input_cells)
+      var main_chain = get_cells_between_range(left_cell, right_cell, orientation)
+      cell_chains.push(main_chain);
+      $.each(main_chain, function(index, cell) { // iterate through main chain
+        var tile_exists_above = tile_exists_at($('.cell[data-y="'+(cell.y-1)+'"][data-x="'+cell.x+'"]'))
+        var tile_exists_below = tile_exists_at($('.cell[data-y="'+(cell.y+1)+'"][data-x="'+cell.x+'"]'))
+        var tile_is_recent = $('.cell[data-x="'+(cell.x)+'"][data-y="'+cell.y+'"]').find('div.tile').hasClass('ui-draggable')
+        console.log(cell + " Tile is recent: " + tile_is_recent)
+        if ( tile_is_recent && (tile_exists_above || tile_exists_below) ) {
+          var top_cell = find_top_cell([new Cell ($('.cell[data-y="'+(cell.y)+'"][data-x="'+cell.x+'"]'))])
+          console.log(top_cell);
+          var bottom_cell = find_bottom_cell([new Cell ($('.cell[data-y="'+(cell.y)+'"][data-x="'+cell.x+'"]'))])
+          var vertical_chain = get_cells_between_range(top_cell, bottom_cell, 'vertical');
+          console.log(vertical_chain)
+          cell_chains.push(vertical_chain);
+        }
+      });
+    }
+  }
+  return cell_chains
+};
 
 
 // SubmitTurn event handler:
@@ -207,11 +327,20 @@ var validate_turn = function (e) {
   e.preventDefault();
   var input_cells = $('#board div.tile.ui-draggable').parent()
   if (tiles_are_inline(input_cells) && 
-      tiles_touch_prev(input_cells) && 
-      tiles_spell_valid_word(input_cells) ) { 
-    alert('VALIDATIONS PASS!') }  
-    // console.log(words_from_turn);
-  else { alert("VALIDATIONS DO NOT PASS!") }
+      tiles_touch_prev(input_cells) ) { 
+    var words = [];
+    var cell_chains = get_cell_chains(input_cells);
+    $.each(cell_chains, function(i, chain) {
+      console.log(chain);
+      var word = chain_to_word(chain);
+      console.log(word);
+      words.push(word);
+    })
+    var parameterized_words = words.join('-');
+    alert(parameterized_words);
+  } else { 
+    alert("Invalid Submission") 
+  }
 }
 
 // runtime code
