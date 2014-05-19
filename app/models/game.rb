@@ -60,4 +60,16 @@ class Game < ActiveRecord::Base
   def complete
     self.status = 'completed'
   end
+
+  def put_tiles_on_board_and_change_turn(input_tiles, game_tiles)
+    input_tiles.each do |tile|
+      game_tiles.each do |gametile|
+        if gametile.tile.letter == tile[:letter]
+          @game_tile = gametile
+        end
+      end
+      @game_tile.put_on_board(Cell.where(x_coord: tile[:x], y_coord: tile[:y]).first)
+    end
+    self.change_turn
+  end
 end

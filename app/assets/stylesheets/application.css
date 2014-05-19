@@ -101,7 +101,9 @@ a {
 
 .tray_cell {
     width:44px;
+    padding: auto;
     border:2px solid white;
+    border-radius:2px;
 }
 
 
@@ -118,6 +120,7 @@ a {
   text-align: center;
   position:relative;
   text-shadow: 0px 1px 2px #666;
+    margin: auto;
   /*margin: 5px 0 0 5px;*/
   /*margin: 0;*/
 }
@@ -164,9 +167,9 @@ a {
     text-align: center;
     margin:0;
     padding:0;
-    width: 300px;
+    width: 380px;
     height: 60px;
-    background-color: lightgrey;
+    background-color: sandybrown;
     border-bottom: 5px solid maroon;
     border-right: 3px solid maroon;
     border-radius: 7px;
@@ -181,18 +184,18 @@ a {
 .submit_button {
     float:left;
     display:inline;
-    margin: 5px 31px;
+    margin: 5px 15px;
 }
 
-#submit_button {
-    font-size:30px;
+#submit_turn {
+    font-size: 32px;
 }
 
 
 .tray_buttons {
     float:left;
     display:inline;
-    margin-left: 33px;
+    margin-left: 15px;
     text-align: center;
 }
 
@@ -270,7 +273,7 @@ a {
     border:3px solid black;
     margin: 5px auto;
     margin-left:2px;
-    border-radius:4px;
+    /*border-radius:4px;*/
     /*text-align:center;*/
 }
 
@@ -314,6 +317,11 @@ a {
 .welcome-motto {
     position:relative;
     bottom: 40px;
+}
+
+#game_logic {
+    position:relative;
+    bottom:50px;
 }
 
 .signup_button {
@@ -483,15 +491,15 @@ a {
 }
 
 .center {
-    background-color: black;
+    background-color: slategrey;
 }
 
 .triple_word {
-    background-color:maroon;
+    background-color:indianred;
 }
 
 .triple_letter {
-    background-color: darkblue;
+    background-color: cornflowerblue;
 }
 
 .double_word {

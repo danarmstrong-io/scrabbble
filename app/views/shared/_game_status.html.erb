@@ -6,7 +6,7 @@
         </div>
         <% if @game.status == "active" %>
             Tiles Remaining: <%= @game.tiles_remaining %>
-            Turn: <%= @game.current_player.username %>
+            <%= @game.current_player.username.capitalize %>'s turn
         <% end %>
     </div>
   <div class="scores">
