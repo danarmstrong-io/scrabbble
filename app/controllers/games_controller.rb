@@ -32,7 +32,9 @@ class GamesController < ApplicationController
       @game = Game.find(params[:id])
       @player_game = Playergame.where(game: @game, player: @game.current_player_id).first
       @player_game.take_turn(params[:words])
+
       @game.put_tiles_on_board_and_change_turn(params[:tiles].values, @player_game.gametiles)
+      @player_game.replenish_tiles
       render :json => "true"
     else
       render :json => "false"
