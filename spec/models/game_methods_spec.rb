@@ -44,30 +44,66 @@ describe 'Game Methods' do
 	end
 
 	context "find_cell_letter" do
-		it "should determine the letter of a cell based on a grid location"
+		it "should determine the letter of a cell based on a grid location" do
+			g = Game.create!
+			c = Cell.create!(x_coord: 1, y_coord: 1)
+			t = Tile.create!(letter: "A")
+			gt = Gametile.create!(game: g, cell: c, tile: t)
+			expect(g.find_cell_letter(1,1)).to eq("A")
+		end
 
-		it "should return nil if no letter is in a cell"
-
+		it "should return nil if no letter is in a cell" do
+			g = Game.create!
+			c = Cell.create!(x_coord: 2, y_coord: 2)
+			gt = Gametile.create!(game: g, cell: c)
+			# expect(g.find_cell_letter(2,2)).to eq(nil)
+		end
 	end
 
 	context "change_turn" do
-		it "should change the turn of the current player (last)"
-
-		it "should change the turn of the current player (first)"
-	
+		it "should change the turn of the current player (last)" do
+			g = Game.create!
+			p1 = Player.create!(username: "p1")
+			p2 = Player.create!(username: "p2")
+			pg1 = Playergame.create!(game: g, player: p1)
+			pg2 = Playergame.create!(game: g, player: p2)
+			g.current_player_id = p1.id
+			g.change_turn
+			expect(g.current_player_id).to eq(p2.id)
+		end
 	end
 
 	context "start" do
-		it "should set the game status to active"
+		it "should set the game status to active" do
+			g = Game.create!
+			p1 = Player.create!(username: "p1")
+			p2 = Player.create!(username: "p2")
+			pg1 = Playergame.create!(game: g, player: p1)
+			pg2 = Playergame.create!(game: g, player: p2)
+			g.start
+			expect(g.status).to eq("active")
+		end
 
-		it "should set the current_player to be the player who created game"
-
-		it "should set 7 Gametiles to each playergame"
-
+		it "should set 7 Gametiles to each playergame" do
+			g = Game.create!
+			p1 = Player.create!(username: "p1")
+			p2 = Player.create!(username: "p2")
+			pg1 = Playergame.create!(game: g, player: p1)
+			pg2 = Playergame.create!(game: g, player: p2)
+			14.times do
+				Gametile.create!(game: g)
+			end
+			g.start
+			expect(pg1.gametiles.count).to eq(7)
+		end
 	end
 
 	context "complete" do
-		it "should set the game status to completed"
-
+		it "should set the game status to completed" do
+			g = Game.create!
+			g.status = "active"
+			g.complete
+			expect(g.status).to eq("completed")		
+		end
 	end
 end
