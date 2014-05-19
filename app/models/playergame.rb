@@ -21,5 +21,10 @@ class Playergame < ActiveRecord::Base
     self.score += score
     self.save
   end
+
+  def take_turn(words)
+    self.replenish_tiles
+    self.add_to_score(Game.calculate_score(words))
+  end
 end
 

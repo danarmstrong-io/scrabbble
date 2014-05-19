@@ -1,9 +1,9 @@
 
   <div>
-    <%= link_to @game.players.first.username, player_path(@game.players.first) %>
+    <%= link_to @game.players.first.username.capitalize, player_path(@game.players.first) %>
     : <%= @game.playergames.first.score %>
   </div>
   <div>
-    <%= link_to @game.players.last.username, player_path(@game.players.last) %>
+    <%= link_to @game.players.last.username.capitalize, player_path(@game.players.last) %>
     : <%= @game.playergames.last.score %>
   </div>
